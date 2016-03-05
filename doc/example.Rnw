@@ -16,7 +16,9 @@
 %% \addto\captionsenglish{\renewcommand\chaptername{Part}}
 \usepackage{import}            % for figures in chapter subdirectories
 \usepackage{float}             % Allow figures and tables to be controlled better (avoid the floating).
-
+\usepackage{caption}         %to number multiple figures with same figure number, such as multi-page panel plots
+\DeclareCaptionLabelFormat{continued}{#1~#2 (Continued)}   %for functions related to multipage plots with same figure number
+\captionsetup[ContinuedFloat]{labelformat=continued}   %for functions related to multipage plots with same figure number
 % Had these for YMR Eqns appendix:
 % \renewcommand{\footrulewidth}{0.4pt}
 % \renewcommand{\headrulewidth}{0pt}
@@ -160,7 +162,7 @@
 \newcommand{\familynameARF}{Pleuronectidae}
 \newcommand{\commonnameARF}{Turbot}
 
-\newcommand{\fishnameBOR}{Bocaccio}
+\newcommand{\fishnameBOR}{Bocaccio Rockfish}
 \newcommand{\sciencenameBOR}{Sebastes paucispinis}
 \newcommand{\familynameBOR}{Sebastidae}
 \newcommand{\commonnameBOR}{}
@@ -319,9 +321,10 @@ if(use.binary.envir){
   require(plot3D)
   require(KernSmooth)
   require(xtable) # For tables which can be inserted into latex docs with knitr
-  load("./r/old.RData")
+  load("./r/.RData")
 }else{
   source("./r/example.r")
+  source("./r/CDFquantiles.r")
 }
 @
 

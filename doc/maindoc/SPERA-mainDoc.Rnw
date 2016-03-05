@@ -34,13 +34,22 @@ Groundfish bottom trawl survey data for our analyses were  collected during the 
 Tows began at pre-determined locations as part of a random, stratified sampling design with strata based on (?????). Fish were identified to species, lengths measured, sexed (0 = unknown, 1 = male, 2 = female, 3 = ?), and characterised by maturity (categories 1 to 7) according to a prioritized sampling protocol. A sub-sample of each fish species from every tow were grouped by species and weighed to the nearest kilogram (kg). Tow length and travel speed were also recorded. The data used these analyses are therefore the biomass of each species in each tow, and in some cases, standardised as catch per unit of trawl effort (catch per square kilometre). 
 
 \subsection{Environmental Data}
+\subsubsection{Survey Data}
 
-During the groundfish bottom trawl survey average net depth (m) and ocean temperature ($^\circ$C) data were also collected from sensors attached to the net. 
-Highly spatially-resolved, commercial logbook data were available from BC's 100\%-observed groundfish bottom trawl fishery. All these data are held in Oracle databases, co-managed by the Pacific Groundfish Statistics Program. Spatially-gridded predictions of temperature and salinity data for Hecate Strait and Queen Charlotte Sound, were output from the Regional Oceanographic Model System at the Institute of Ocean Sciences. Spatial bottom-type data at 100 m and 20 m resolution were available at the Pacific Biological Station. Scientists at NOAA's Alaska Fisheries Science Center are currently engaged in developing distribution maps for all commercially-fished species in Alaska. Some of these data were available, via our external collaborator Dr. Rooper at the Alaska Fisheries Science Center.
+Highly spatially-resolved, commercial logbook data were available from BC's 100\%-observed groundfish bottom trawl fishery. All these data are held in Oracle databases, co-managed by the Pacific Groundfish Statistics Program. During the groundfish bottom trawl survey average net depth (m) and average ocean temperature ($^\circ$C) data were also collected from sensors attached to the net. Spatial bottom-type data at 100 m and 20 m resolution were available at the Pacific Biological Station. Scientists at NOAA's Alaska Fisheries Science Center are currently engaged in developing distribution maps for all commercially-fished species in Alaska. Some of these data were available, via our external collaborator Dr. Rooper at the Alaska Fisheries Science Center.
 
-Substrate type (e.g., hard, sandy, muddy) and ocean depth for the study area was obtained from the \bc Marine Conservation Analysis database.
+\subsubsection{ROMS Data}
+ROMS is a terrain following equation model that has been used extensively globally \citep{haid08}. The use of the model for the BC coast is forced by the North American Regional Reanalysis (NARR) \citep{narr04} atmospheric data, and lateral boundary conditions are extracted from the Simple Ocean Data Assimilation project, or SODA \citep{cart08}. At the open boundaries tidal forcing is applied using the output from a North-East Pacific tidal model \citep{fore00}. Furthermore, the model is forced by monthly fresh water discharge from major BC rivers, derived as in \citet{morr12}. Further details pertaining to the model, as well as an extensive model validation, can be found in \citet{mf12}.
 
-Software: A version of the hierarchical Bayesian model has already been written using the OpenBUGS programming language. This code was customized and refined for this project. All other statistical models and graphic outputs were developed using the R-programming language. Species abundance and data distribution maps were made using ArcGIS or a similar (e.g., QGIS, PBSMapping).
+The model was used to estimate the spatial and temporal variability of the salinity and temperature in the ocean off the British Columbia coast. ROMS was used to hindcast the period of 1979 to 2011 and the model domain extends from the Columbia River to the Alaska Panhandle.   The horizontal grid resolution is 3 km, with 60 levels in the vertical available; however, only the deepest level was used for this study. The data used in this study are the average summer (June to August???) bottom temperature and salinity for each year.
+
+ROMS bottom temperature data were highly related to bottom trawl survey average net temperature R$^2$ $=$ 0.84. (can unhardwire once I'm sourcing our R code and value is in global environment)
+
+\subsubsection{BCMCA Data}
+Substrate type (e.g., hard, sandy, muddy and undefined) and ocean depth for the study area was obtained from the \bc\ Marine Conservation Analysis database. Substrate data was then gridded in 3 km cells with PBSMapping R script to convert the data to a usable format for our analyses.
+
+\subsection{Software}
+A version of the hierarchical Bayesian model has already been written using the OpenBUGS programming language. This code was customized and refined for this project. All other statistical models and graphic outputs were developed using the R-programming language. Species abundance and data distribution maps were made using ArcGIS or a similar (e.g., QGIS, PBSMapping).
 
 \subsection{Data Management}
 Spatially-gridded Canadian datasets and gridded predictions of distribution and abundance were transferred to a database managed by the Pacific Groundfish Statistics program. They were available internally to Pacific stock assessment scientists, and by request externally. Maps were incorporated into an intranet-based tool, making them available to Pacific scientists and managers.
@@ -148,203 +157,43 @@ Models are calibrated with spatial abundance observations. Analyses can be done 
 
 %Here's how you write some values by reference from your R environment inside \latex text block: For example to get the mean of x you would use the command: \$\ShowSexpr{mean(x)}\$ which in this case evaluates to $\Sexpr{mean(x)}$. The \verb!$\Sexpr{}$! construct represents an S-expression, where S was the predecessor to R. For some reason it hasn't yet been changed to \verb!$\Rexpr{}$!. In this example, the values for the x vector were read in from \emph{example.r} at the beginning of the knitting process and is accessible throughout the document. You can call simple R commands using the \verb!$\Sexpr{}$! command inside \latex. You can do more than one command by separating with a semicolon, for example the command \$\ShowSexpr{z=x+y;mean(z)}\$ evaluates to $\Sexpr{z=x+y;mean(z)}$ for the x and y values loaded from \emph{example.r}.\\
 
-%If there's an error, the first thing to do is check the \emph{knitrOutput.log} file. This will contain all messages both regular and error which \emph{knitr} outputs. If there was an error during the knitting process, you will find it there. The last lines of the file should say:
-%\begin{alltt}
-%  output file: \texfile
-
-%  [1] "\texfile"
-%\end{alltt}
-%If you see this message and the file \emph{\texfile} exists then the \emph{knitr} part has worked but the \latex part of the compilation has failed. The message in the case that \latex has failed will be something like \emph{l.132...error message}. In that case, the error happened on line 132 of the \emph{\texfile} file. You will have to look at this file first to see where the error is, then go back to your \rnwexamplefile\ file and fix it. Sometimes errors earlier on can trigger something later to fail, which makes it very hard to debug. The best advice is to compile after every change to make sure it is still working. A lot of time can be wasted tracking down errors if you haven't compiled in a long time and made many changes, where more than one error may have been introduced. Matching parenthesis errors can be particular insidious.
-
-%If there is an error stating:
-
-%\emph{**** Could not open the file example.pdf}
-
-%it means that you still have the PDF open and you need to close it and re-compile. If you have the GhostView viewer, you can keep the postscript (\emph{example.ps}) file open instead while developing. You won't get an error even if it stays open.
-
 \bigskip
 
 \section{RESULTS}
-%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
-%\begin{figure}[!htp]
-%\begin{center}
-%\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridd%ed_Panel_1.eps}
-%\end{center}
-%\vspace{0mm}
-% To get the grid size in km^2 for the caption:
-% While in the gui for the map, type mean(xtcall(PBSmap)$pdata$area) for the map you currently have loaded.
-%\caption{ROMS ocean bottom temperature ($^\circ$C) from 1979 to 2011.}
-%\label{fig:roms.ann.temp} \end{figure}
-
-%Equations are fairly straightforward, and if organized using the same label prefix (\textbf{eq:}), they will be numbered automatically. Here are some example equations from the 2015 \fishnameARF\ assessment with added margins for captions:
-
-%\begin{align} \label{eq:length-temp-lm}
-
-%B_y = \sum_{i=1}^kC_{y_i}A_i=\sum_{i=1}^kB_{y_i}
-%\end{align}
-
-%\begin{addmargin}[3em]{1em}
-%where $\overline{L}$ is the mean \fishnameARF\ length...
-%\end{addmargin}
-
-%\begin{align} \label{eq:length-temp-lm}
-%\overline{L}_s = B_{0} + \overline{T}_{D_s} + Y_s + \overline{D}_{s} + \overline{T}_{D_s} * \overline{D}_{s} * Y_s
-%B_y = \sum_{i=1}^kC_{y_i}A_i=\sum_{i=1}^kB_{y_i}
-%\end{align}
-
-%\begin{addmargin}[3em]{1em}
-%where $\overline{L}$ is the mean \fishnameARF\ length...
-%\end{addmargin}
-
-
-%CPUE ($C_{y_i}$) for \fishnameARF\ in stratum $i$ for year $y$ was calculated as a density in $kg/km^2$ by:
-
-%%\begin{align} \label{eq:cpuecalc}
-%C_{y_i}=\frac{\sum\limits_{j=1}^{n_{y_i}} \left[\frac{W_{y_i,j}}{D_{y_i,j}w_{y_i,j}}\right]}{n_{y_i}}
-%\end{align}
-%\begin{addmargin}[3em]{1em}
-%where $W_{y_i,j}$ is the catch weight in $kg$ for \fishnameARF\ in stratum $i$, year $y$, and tow $j$, $D_{y_i,j}$ is the distance travelled in $km$ for tow $j$ in stratum $i$ and year $y$, $w_{y_i,j}$ is the net opening in $km$ by tow $j$, stratum $i$, and year $y$, and $n_{y_i}$ is the number of tows in stratum $i$.
-%\end{addmargin}
-
-%The variance of the survey biomass estimate $V_y$ for \fishnameARF\ in year $y$ is calculated in $kg^2$ as follows:
-%\begin{align} \label{eq:indexvariance}
-%V_y=\sum_{i=1}^k\left[\frac{\sigma_{y_i}^2A_i^2}{n_{y_i}}\right]=\sum_{i=1}^kV_{y_i}
-%\end{align}
-%\begin{addmargin}[3em]{1em}
-%where $\sigma_{y_i}^2$ is the variance of the CPUE in $kg^2/km^4$ for year $y$ in stratum $i$, $V_{y_i}$ is the variance of \fishnameARF\ in stratum $i$ for year $y$, where $\sigma_{y_i}^2$ was obtained from bootstrapped samples (see below).
-%\end{addmargin}
-
-%The CV for \fishnameARF\ for each year $y$ was calculated as follows:
-%\begin{align} \label{eq:indexcv}
-%CV_y=\frac{\sqrt{V_y}}{B_y}
-%\end{align}
-%\begin{addmargin}[3em]{1em}
-%where $CV_y$ is the CV for year $y$.
-%\end{addmargin}
-
-%\subsubsection{A few more equation tidbits}
-
-%Here is an example of overline usage: $\overline{R}_{init}$.
-
-%Double dashes can be used to make a longer solid line to show value ranges: $0.308 y^{-1}$--$0.406 y^{-1}$.
-
-%Here's how you show a fraction inline: $\frac{B_{2016}}{B_{ReferencePoint}} < 1$.
-
-\bigskip
 
 \subsection{Environmental Covariates} \label{sec:enviro.covar}
 
-Environmental covariates considered during this analysis included average trawl net depth, and bottom temperature and salinity. Trawl net depth was recorded during each tow. Temperature and salinity data were collected during the groundfish trawl surveys and were also available from the Regional Oceanographic Model System (ROMS).  
+Environmental covariates considered during this analysis included average trawl net depth, and bottom temperature and salinity. Trawl net depth was recorded during each tow. Temperature and salinity data were collected during the groundfish trawl surveys and were also available from the Regional Oceanographic Model System (ROMS).
 
+\subsection{Cumulative Distribution Functions}
+\subsubsection{Survey Data}
+The relationships varied between environmental factors considered in this study (temperature, salinity and depth) and the twenty species of groundfish. For a better understanding of how to intepret the cumulative distribution results, we provide examples using \fishnameROL\  and \fishnameLST\ results. \fishnameROL\ were most abundant at high temperatures with 50\% of their biomass occurring at temperatures greater than 9.1$^\circ$C and depths greater than 40.5 m (refer to figure). Fifty perent  of \fishnameLST\ occurred at temperatures cooler than 4.9$^\circ$C and depths greater than 470 m. These examples are in opposite ends of the spectrum with respect to habitat use within the study area and therefore their catch weight cdf's were much different than the cdf's for both environmental variables (i.e., the distribution of available temperatures and depths within the survey area).
 
-%%%%%%%%% ROMS DEPTH FIGURE
-\newpage
-\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
-\end{center}
-\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
-\label{fig:allsurveysdepth}
-\end{figure}
+For comparative purposes between this study and \citet{psf94} we present the results of \fishnameARF\ and \fishnameDOG\ for depth and survey temperature. With respect to depth, \citet{psf94} found that 25\% of the \fishnameARF\ biomass occurred at depths shallower than 84 m, 50\% occurred shallower than 100 m, and 75\% occurred shallower than 120 m. Our study found a different distribution with 25\% of the biomass shallower than 112 m, 50\% shallower than 140.5 m and 75\% shallower than 169.5 m (ref to figure). Twenty-five percent of \fishnameDOG\ in \citet{psf94} were at depths less than 33 m, 50\% at less than 50 m and 75\% at less than 93 m. Similarly, our study found that 25\% of the biomass was at depths less than 51 m, 50\% less than 52.5 m and 75\% less than 109 m (ref to figure).
 
-\newpage            
-%%%%%%%%% ROMS TEMP PANEL FIGURES       
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_1.eps}
-\end{center}
+For survey temperature, \citet{psf94} found that 25\% of the \fishnameARF\ biomass occurred at temperatures less than 6.1$^\circ$C, 50\% at less than 6.5$^\circ$C, and 75\% at less than 6.7$^\circ$C. Our results were similar with 25\% of \fishnameARF\ in our study occurring at temperatures less than 5.9$^\circ$C, 50\% at less than 6.1$^\circ$C and 75\% at less than 6.5$^\circ$C. Again, \fishnameDOG\  cdf's were similar between studies. Twenty-five percent of \fishnameDOG\ in the previous study were found at temperatures less than 6.6$^\circ$C, 50\% at less than 6.8$^\circ$C and 75\% at less than 9.6$^\circ$C. Finally, in this study 25\% of \fishnameDOG\ occurred at temperatures less than 6.8$^\circ$C, 50\% at less than 8.8$^\circ$C and 75\% at less than 10.1$^\circ$C. This is a considerably larger temperature range that is utilised by this species relative to \fishnameARF\ . 
 
-\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1979 to 1987.}
-\label{fig:ROMStemp79to87}
-\end{figure}
+The randomization test (\ref{eq:cdf3})for determining significant differences from random distributions of the environmental variables indicated that \fishnameARF\ were (or were not) significantly different from the available depths or temperatures. \fishnameDOG\ had (or did not have) a similar result. Refer to table XX for a summary of significant differences from random distributions.
 
-\newpage
+The only species that did not show significant differences from random distributions of the environmental variables were.... (see Table Xx??)
 
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_2.eps}
-\end{center}
+In general, due to the confounding relationships among temperature, salinity and depth, species that were most abundant at low temperature were also most abundant at high salinity and deeper depths. For example, 50\% of \fishnameSST\ were in temperatures less than 5.5 $^\circ$C, salinities greater than 38.2 PSU and depths greater than 290 m. 
 
-\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1988 to 1996.}
-\label{fig:ROMStemp88to96}
-\end{figure}   
+\subsection{ROMS Data}
+Cumulative distribution functions of catch weight were also calculated based on ROMS depth, temperature and salinity data. Catch-weighted depth for \fishnameARF\ was at 59 m for 2.5\% of the biomass, 25\% at less than 108 m, 50\% at less than 138 m, 75\% at les than 164 m and 97.5\% at less than 288 m. These catch-weighted depths were all similar (approximately $\pm$ 5 m) except for the 2.5th percentile which was 13 m deeper for the survey temperature. The catch-weighted depth percentiles for \fishnameDOG\ were very similar between the two data types with all being witin $\pm$ 10 m of each other. 
 
-\newpage
+With respect to temperature-weighted catch, the 2.5th percentile for \fishnameARF\ was at 5.6$^\circ$C, 25\% of the biomass was colder than 6.5$^\circ$C, 50\% at less than 7.0$^\circ$C, 75\% at less than 7.8$^\circ$C and 95\% at less than 9.6$^\circ$C. This represents a wider temperature range (4.0$^\circ$C) for 95\% of the biomass than the survey data (2.6$^\circ$C); however, the the middle 50\% of the ROMS biomass occurred within 1.3$^\circ$C (6.5$^\circ$C to 7.8$^\circ$C), which was smaller than the 1.6$^\circ$C temperature range for the survey data (5.9$^\circ$C to 6.5$^\circ$C). \fishameDOG\ had a similar temperature range between data types, 6.6$^\circ$C for ROMS compared to 7.1$^\circ$C for survey data. In contrast to \fishnameARF\@,the middle 50\% of the biomass occurred in a narrower range of temperatures for ROMS data (7.7$^\circ$C to 9.7$^\circ$C) relative to survey data (6.8$^\circ$C to 10.1$^\circ$C). For both data types, 95\% of the biomass was colder than 12.5$^\circ$C.  
 
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_3.eps}
-\end{center}
+The are no salinity-weighted catch percentiles to compare between data types or with \citet{psf94}; however, the 2.5th percentile for \fishnamARF\ was for ROMS salinity was less than 34 PSU. The 25th percentile of biomass was for salinity less than 35.5 PSU, 50\% at less than 36.4 PSU, 75\% at less than 37.1 PSU and 97.5\% at less tahn 38.2 PSU. \fishnameDOG\ was similar with a 95th percentile range of from 33.9 to 37.7 PSU. The 25th percentile was for salinities less than 34.3 PSU, 50\% at less than 34.3 PSU and 75\% at salinities less than 35.6 PSU. 
 
-\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1997 to 2005.}
-\label{fig:ROMStemp97to05}
-\end{figure}   
+The randomization test (\ref{eq:cdf3})for determining significant differences from random distributions of the ROMS environmental variables indicated that \fishnameARF\ were (or were not) significantly different from the available depths, temperatures and salinities. \fishnameDOG\ had (or did not have) a similar result. Refer to table XX for a summary of significant differences from random distributions.
 
-\newpage
+The only species that did not show significant differences from random distributions of the ROMS environmental variables were.... (see Table Xx??)
 
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_4.eps}
-\end{center}
-
-\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
-\label{fig:ROMStemp06to11}
-\end{figure}
-
-\newpage
-%%%%%%%%% ROMS SALINITY PANEL FIGURES 
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_1.eps}
-\end{center}
-
-\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1979 to 1987.}
-\label{fig:ROMSsal79to87}
-\end{figure}
-
-\newpage
-
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_2.eps}
-\end{center}
-
-\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1988 to 1996.}
-\label{fig:ROMSsal88to96}
-\end{figure}
-
-\newpage
-
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_3.eps}
-\end{center}
-
-\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1997 to 2005.}
-\label{fig:ROMSsal97to05}
-\end{figure}
-
-\newpage
-
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_4.eps}
-\end{center}
-
-\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
-\label{fig:ROMSsal06to11}
-\end{figure}
-
-
-\clearpage
-\newpage
-
+\bigskip
 \section{HOW REFERENCES WORK} \label{sec:how.refs.work}
 
 \subsection{How the figure and table references work} \label{subsec:how.figure.refs.work}
-
-See Figures \ref{fig:example-random-stuff}, \ref{fig:example-brownian-motion}, \ref{fig:example-half-torus}, and \ref{fig:example-galaxy}. Note that these numbers are clickable and you can go directly to the figure. These are referenced figures.
 
 A figure/table reference works by adding a reference name to a figure/table, then remembering what is was and using a \verb!\ref! command to reference the figure/table. For example in Figure \ref{fig:example-random-stuff}, the figure reference code has a label tag like this \verb!\label{fig:example-random-stuff}!. The figure can be referenced anywhere in the latex document by using this syntax: \verb!\ref{fig:example-random-stuff}!. The numbering is taken care of for you and is separate for each type of reference. Here is a list of suggested prefixes to use for different reference types:
 
@@ -437,6 +286,18 @@ $x_{hi}~ =$ & measurement for a hydrographic variable in set $i$ of stratum $h$;
 \end{tabular}
 \end{table}
 
+%%%CDF Quantile table
+%<<make.cdfquant.table, results='asis', echo=FALSE>>=
+%make.cdfquant.table(species,## The output of the load catches function above.
+%                  digits, ## number of digits to show
+%                  xcaption = "Cumulative distribution function %quantiles", ## Caption to use
+%                  xlabel   = "default", ## Latex label to use
+%                  font.size = 9,        ## Size of the font for the table
+%                  space.size = 10,      ## Size of the spaces for the table
+%                  placement = "tbp"       ## Placement of table
+%                               )
+%@
+ 
 %% How you call an xtable from latex. Note there is no need for anything other than
 %% the R call to make.xtable. The label can be referenced elsewhere in the document.
 <<results='asis', echo=FALSE>>=
@@ -534,14 +395,216 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 %% makeTable(12, 7, ci=ci, burnthin=burnthin, digits=3, retxtable=TRUE, xcaption=cap, xlabel="tab:DecisionsSelMat")
 %% @
 
+\newpage
+
+
 \section{FIGURES}
+\subsection{Survey Data}
+%%%%%%%%% SUrvey temp panel FIGURE
+
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{SurveyTemp3km_gridded_Panel_1.eps}
+\end{center}
+\caption{Mean ocean temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from groundfish trawl surveys from 2003 to 2011.}
+\label{fig:survtemppanel}
+\end{figure}
+
+\newpage
+
+\subsection{ROMS}
+%%%%%%%%% ROMS DEPTH FIGURE
+\newpage
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
+\end{center}
+\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
+\label{fig:allsurveysdepth}
+\end{figure}
+
+\newpage
+
+%%%%%%%%% ROMS TEMP FIGURE - ALL YEARS
+
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_1.eps}
+\end{center}
+\vspace{0mm}
+\caption{Summer ROMS ocean bottom temperature ($^\circ$C) from 1979 to 2011.}
+\label{fig:roms.ann.temp}
+\end{figure} 
+
+%%%%%%%%% ROMS TEMP PANEL FIGURES       
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_1.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1979 to 1987.}
+\label{fig:ROMStemp79to87}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_2.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1988 to 1996.}
+\label{fig:ROMStemp88to96}
+\end{figure}   
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_3.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1997 to 2005. The grey dashed line is the 1:1 line.}
+\label{fig:ROMStemp97to05}
+\end{figure}   
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_4.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
+\label{fig:ROMStemp06to11}
+\end{figure}
+
+\newpage
+
+%%%ROMS TEMP VERSUS SURVEY TEMP SCATTERPLOT
+
+\graphicspath{{c:/GitHub/SPERA-Maps/Results/Figures/}}
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMST_vs_SurvT.eps}
+\end{center}
+\caption{Relationship between ROMS and survey ocean bottom temperature ($^\circ$C) for 2003 to 2011.}
+\label{fig:ROMSsurvT}
+\end{figure}
+
+\newpage 
+
+%%%%%%%%% ROMS SALINITY PANEL FIGURES 
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_1.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1979 to 1987.}
+\label{fig:ROMSsal79to87}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_2.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1988 to 1996.}
+\label{fig:ROMSsal88to96}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_3.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1997 to 2005.}
+\label{fig:ROMSsal97to05}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_4.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
+\label{fig:ROMSsal06to11}
+\end{figure}
+
+\newpage
+\clearpage
+
+\subsection{Cumulative Distribution Functions}
+
+%%% CDF BOX PLOTS FOR SURVEY DEPTH AND TEMPERATURE
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{cdf_Box_Depth.eps}
+    \caption[]
+      {{\small Plots of quartiles of available depth and groundfish species based on average survey depth (m).}}    
+    \label{fig:cdf.box.depth}
+        \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}  
+    \centering 
+    \includegraphics[width=\textwidth]{cdf_Box_Temperature.eps}
+    \caption[]%
+     {{\small Plots of quartiles of available temperature and groundfish species based on average survey temperature ($^\circ$C).}}    
+    \label{fig:cdf.box.temp}
+    \end{subfigure}
+    \caption[ ]
+     {\small Quartiles of available habitat and groundfish species based on ROMS 3 km gridded data. Whiskers extend to the 2.5th and 97.5th percentiles, the end of the boxes extend to the 25th and 75th percentiles, and the vertical black bar represents the median (50th percentile). Species are arranged in increasing order based on the value of their median.} 
+    \label{fig:cdf.box.survey}
+    \end{figure*}
+ 
+%%% CDF BOX PLOTS FOR ROMS DEPTH, TEMPERATURE and SALINITY
+%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+%\begin{figure*}
+%        \centering
+%        \begin{subfigure}[b]{0.475\textwidth}
+%            \centering
+%            \includegraphics[width=\textwidth]{cdf_Box_ROMStempBlocked.eps}
+%            \caption[]
+%            {{\small Plots of quartiles of available bottom temperature ($^\circ$C) and groundfish species based on ROMS temperature.}}    
+%            \label{fig:cdf.box.ROMStemp}
+%        \end{subfigure}
+%        \hfill
+%        \begin{subfigure}[b]{0.475\textwidth}  
+%            \centering 
+%            \includegraphics[width=\textwidth]{cdf_Box_ROMSsalinityBlocked.eps}
+%            \caption[]%
+%            {{\small Plots of quartiles of available salinity (PSU) and groundfish species based on ROMS salinity.}}    
+%           \label{fig:cdf.box.ROMSsalinity}
+%        \end{subfigure}
+%        \caption[ ]
+%        {\small Quartiles of available habitat and groundfish species based on ROMS 3 km gridded data. Whiskers extend to the 2.5th and 97.5th percentiles, the end of the boxes extend to the 25th and 75th percentiles, and the vertical black bar represents the median (50th percentile). Species are arranged in increasing order based on the value of their median.} 
+%        \label{fig:cdf.box.ROMS}
+%    \end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %\begin{figure}[H]
 %\begin{center}
 %<<fig.height=9, fig.width=8>>=
 %random.stuff()
-@
+%@
 %\end{center}
 %\vspace{0mm}
 %\caption{Random points example... Degrees are represented in \latex %like this 0.1$^\circ$ and superscript like this km$^2$)}
@@ -562,41 +625,41 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 %%\caption{Mean Maturity} \label{fig:maturity} \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[H]
-\begin{center}
-<<fig.height=5, fig.width=8>>=
-brownian.motion()
-@
-\end{center}
-%\vspace{0mm}
-\caption{Brownian motion example..}
-\label{fig:example-brownian-motion}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[H]
+%\begin{center}
+%<<fig.height=5, fig.width=8>>=
+%brownian.motion()
+%@
+%\end{center}
+%%\vspace{0mm}
+%\caption{Brownian motion example..}
+%\label{fig:example-brownian-motion}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<fig.height=9, fig.width=8>>=
-half.torus()
-@
-\end{center}
+%\begin{figure}[H]
+%\begin{center}
+%<<fig.height=9, fig.width=8>>=
+%half.torus()
+%@
+%\end{center}
 %\vspace{0mm}
-\caption{Half torus example..}
-\label{fig:example-half-torus}
-\end{figure}
+%\caption{Half torus example..}
+%\label{fig:example-half-torus}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+%\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-\begin{center}
-<<fig.height=9, fig.width=8>>=
-plot.galaxy.data()
-@
-\end{center}
-%\vspace{0mm}
-\caption{Galaxy example}
-\label{fig:example-galaxy}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[H]
+%\begin{center}
+%<<fig.height=9, fig.width=8>>=
+%plot.galaxy.data()
+%@
+%\end{center}
+%%\vspace{0mm}
+%\caption{Galaxy example}
+%\label{fig:example-galaxy}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%

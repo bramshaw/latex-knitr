@@ -35,24 +35,13 @@ They spawn in deep water (> 400 m) from fall to winter along the continental she
 \newpage
 
 \subsection{Figures}
-%\begin{figure}[!htp]
-%\begin{center}
-%\includegraphics[width=6in,keepaspectratio=true]{ARF/SurveyCatchAllSurveys_grid_3km_gridded.eps}
-%\end{center}
-
-%\caption{Mean survey catch (kg) of \fishnameARF\ in grid cells 3 km x 3 km. The shaded cells give an approximation of the area where \fishnameARF\ was encountered by fishing events from all groundfish trawl surveys for all years. See Table XX for a list of surveys.}
-%\label{fig:surveycatchARF}
-%\end{figure}
-
-%\newpage
-
 \begin{figure*}
         \centering
         \begin{subfigure}[b]{0.475\textwidth}
             \centering
             \includegraphics[width=\textwidth]{ARF/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameARF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameARF.}}    
             \label{fig:surveycatchARF}
         \end{subfigure}
         \hfill
@@ -60,7 +49,7 @@ They spawn in deep water (> 400 m) from fall to winter along the continental she
             \centering 
             \includegraphics[width=\textwidth]{ARF/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameARF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameARF.}}    
            \label{fig:allsurveyslengthARF}
         \end{subfigure}
         \vskip\baselineskip
@@ -68,7 +57,7 @@ They spawn in deep water (> 400 m) from fall to winter along the continental she
             \centering 
             \includegraphics[width=\textwidth]{ARF/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameARF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameARF\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexARF}
         \end{subfigure}
         \quad    %adjusts distance between panels
@@ -76,18 +65,18 @@ They spawn in deep water (> 400 m) from fall to winter along the continental she
             \centering 
             \includegraphics[width=\textwidth]{ARF/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameARF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameARF.}}    
             \label{fig:allsurveysmaturityARF}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameARF\ data. The shaded cells give an approximation of the area where \fishnameARF\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameARF\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameARF\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:ARFfigures}
     \end{figure*}
-
 
 \newpage
 \clearpage
 
+%%% CDF with survey depth and temp
 \graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/Species/} }
 \begin{figure*}
         \centering
@@ -107,12 +96,39 @@ They spawn in deep water (> 400 m) from fall to winter along the continental she
            \label{fig:cdf.temp.ARF}
         \end{subfigure}
         \caption[ ]
-        {\small Cumulative frequency distributions of habitat variables and \fishnameARF\ catch-weighted data for all groundfish trawls surveys for all years.} 
+        {\small Cumulative frequency distributions of habitat variables and \fishnameBOR\ catch-weighted data for all groundfish trawls surveys for all years.} 
         \label{fig:ARF.cdf.figures}
     \end{figure*}
-    
+        
 \newpage
 \clearpage
+
+%%% CDF with ROMS temp and salinity
+%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/Species/} }
+%\begin{figure*}
+%        \centering
+%        \begin{subfigure}[b]{0.475\textwidth}
+%            \centering
+%            \includegraphics[width=\textwidth]{ARF/cdf_ROMStemp_BLOCKED.eps}
+%            \caption[]
+%            {{\small }}    
+%            \label{fig:cdf.ROMStemp.ARF}
+%        \end{subfigure}
+%        \hfill
+%        \begin{subfigure}[b]{0.475\textwidth}  
+%            \centering 
+%            \includegraphics[width=\textwidth]{ARF/cdf_ROMSsalinity_BLOCKED.eps}
+%            \caption[]%
+%            {{\small }}    
+%           \label{fig:cdf.ROMSsalinity.ARF}
+%        \end{subfigure}
+%        \caption[ ]
+%        {\small Cumulative frequency distributions of habitat variables and \fishnameARF\ catch-weighted data for all groundfish trawls surveys for all years.} 
+%        \label{fig:ARF.cdf.ROMSfigures}
+%    \end{figure*}    
+    
+%\newpage
+%\clearpage
 
 \section{\fishnameBOR}
 \subsection{\LH}
@@ -140,7 +156,7 @@ Adults school with \fishnameWWR\, Yellowtail Rockfish (\emph{Sebastes flavidus})
             \centering
             \includegraphics[width=\textwidth]{BOR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameBOR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey catch (kg) of \fishnameBOR.}}    
             \label{fig:surveycatchBOR}
         \end{subfigure}
         \hfill
@@ -148,7 +164,7 @@ Adults school with \fishnameWWR\, Yellowtail Rockfish (\emph{Sebastes flavidus})
             \centering 
             \includegraphics[width=\textwidth]{BOR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameBOR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameBOR.}}    
            \label{fig:allsurveyslengthBOR}
         \end{subfigure}
         \vskip\baselineskip
@@ -156,7 +172,7 @@ Adults school with \fishnameWWR\, Yellowtail Rockfish (\emph{Sebastes flavidus})
             \centering 
             \includegraphics[width=\textwidth]{BOR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameBOR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameBOR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexBOR}
         \end{subfigure}
         \quad    %adjusts distance between panels
@@ -164,11 +180,11 @@ Adults school with \fishnameWWR\, Yellowtail Rockfish (\emph{Sebastes flavidus})
             \centering 
             \includegraphics[width=\textwidth]{BOR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameBOR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameBOR.}}    
             \label{fig:allsurveysmaturityBOR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameBOR\ data. The shaded cells give an approximation of the area where \fishnameBOR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameBOR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameBOR\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:BORfigures}
     \end{figure*}
     
@@ -229,7 +245,7 @@ Unpublished information (presented as pers. comm. within \citet{car09}) suggests
             \centering
             \includegraphics[width=\textwidth]{CAR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameCAR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameCAR.}}    
             \label{fig:surveycatchCAR}
         \end{subfigure}
         \hfill
@@ -237,7 +253,7 @@ Unpublished information (presented as pers. comm. within \citet{car09}) suggests
             \centering 
             \includegraphics[width=\textwidth]{CAR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameCAR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameCAR.}}    
            \label{fig:allsurveyslengthCAR}
         \end{subfigure}
         \vskip\baselineskip
@@ -245,7 +261,7 @@ Unpublished information (presented as pers. comm. within \citet{car09}) suggests
             \centering 
             \includegraphics[width=\textwidth]{CAR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameARF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameCAR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexCAR}
         \end{subfigure}
         \quad
@@ -253,11 +269,11 @@ Unpublished information (presented as pers. comm. within \citet{car09}) suggests
             \centering 
             \includegraphics[width=\textwidth]{CAR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameCAR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameCAR.}}    
             \label{fig:allsurveysmaturityCAR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameCAR\ data. The shaded cells give an approximation of the area where \fishnameCAR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameCAR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameCAR\ was encountered. See Table XX for a list of surveys.} 
       \label{fig:CARfigures}
     \end{figure*}
 
@@ -318,7 +334,7 @@ They  prefer 7 \textdegree C to 15 \textdegree C water and it is believed that t
             \centering
             \includegraphics[width=\textwidth]{DOG/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameDOG\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameDOG.}}    
             \label{fig:surveycatchDOG}
         \end{subfigure}
         \hfill
@@ -326,7 +342,7 @@ They  prefer 7 \textdegree C to 15 \textdegree C water and it is believed that t
             \centering 
             \includegraphics[width=\textwidth]{DOG/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameDOG\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameDOG.}}    
            \label{fig:allsurveyslengthDOG}
         \end{subfigure}
         \vskip\baselineskip
@@ -334,7 +350,7 @@ They  prefer 7 \textdegree C to 15 \textdegree C water and it is believed that t
             \centering 
             \includegraphics[width=\textwidth]{DOG/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameDOG\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameDOG\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexDOG}
         \end{subfigure}
         \quad
@@ -342,11 +358,11 @@ They  prefer 7 \textdegree C to 15 \textdegree C water and it is believed that t
             \centering 
             \includegraphics[width=\textwidth]{DOG/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameDOG\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameDOG.}}    
             \label{fig:allsurveysmaturityDOG}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameDOG\ data. The shaded cells give an approximation of the area where \fishnameDOG\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameARF\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameARF\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:DOGfigures}
     \end{figure*}
 
@@ -402,7 +418,7 @@ Potential predators include the Pacific Sleeper Shark (\emph{Somniosus pacificus
             \centering
             \includegraphics[width=\textwidth]{DOL/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameDOL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameDOL.}}    
             \label{fig:surveycatchDOL}
         \end{subfigure}
         \hfill
@@ -410,7 +426,7 @@ Potential predators include the Pacific Sleeper Shark (\emph{Somniosus pacificus
             \centering 
             \includegraphics[width=\textwidth]{DOL/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameDOL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameDOL.}}    
            \label{fig:allsurveyslengthDOL}
         \end{subfigure}
         \vskip\baselineskip
@@ -418,7 +434,7 @@ Potential predators include the Pacific Sleeper Shark (\emph{Somniosus pacificus
             \centering 
             \includegraphics[width=\textwidth]{DOL/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameDOL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameDOL\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexDOL}
         \end{subfigure}
         \quad
@@ -426,11 +442,11 @@ Potential predators include the Pacific Sleeper Shark (\emph{Somniosus pacificus
             \centering 
             \includegraphics[width=\textwidth]{DOL/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameDOL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameDOL.}}    
             \label{fig:allsurveysmaturityDOL}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameDOL\ data. The shaded cells give an approximation of the area where \fishnameDOL\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameDOL\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameDOL\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:DOLfigures}
     \end{figure*}
 \newpage
@@ -485,7 +501,7 @@ Spawning occurs in \bc\ from January to March \citep{hart1973, starr09}. Fifty p
             \centering
             \includegraphics[width=\textwidth]{ENL/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameENL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameENL.}}    
             \label{fig:surveycatchENL}
         \end{subfigure}
         \hfill
@@ -493,7 +509,7 @@ Spawning occurs in \bc\ from January to March \citep{hart1973, starr09}. Fifty p
             \centering 
             \includegraphics[width=\textwidth]{ENL/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameENL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameENL.}}    
            \label{fig:allsurveyslengthENL}
         \end{subfigure}
         \vskip\baselineskip
@@ -501,7 +517,7 @@ Spawning occurs in \bc\ from January to March \citep{hart1973, starr09}. Fifty p
             \centering 
             \includegraphics[width=\textwidth]{ENL/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameENL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameENL\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexENL}
         \end{subfigure}
         \quad
@@ -509,11 +525,11 @@ Spawning occurs in \bc\ from January to March \citep{hart1973, starr09}. Fifty p
             \centering 
             \includegraphics[width=\textwidth]{ENL/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameENL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameENL.}}    
             \label{fig:allsurveysmaturityENL}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameENL\ data. The shaded cells give an approximation of the area where \fishnameENL\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameENL\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameENL\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:ENLfigures}
     \end{figure*}
 \newpage
@@ -569,7 +585,7 @@ Studies have found a higher abundance of \fishnameGSR\ at reefs with small numbe
             \centering
             \includegraphics[width=\textwidth]{GSR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameGSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameGSR.}}    
             \label{fig:surveycatchGSR}
         \end{subfigure}
         \hfill
@@ -577,7 +593,7 @@ Studies have found a higher abundance of \fishnameGSR\ at reefs with small numbe
             \centering 
             \includegraphics[width=\textwidth]{GSR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameGSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameGSR.}}    
            \label{fig:allsurveyslengthGSR}
         \end{subfigure}
         \vskip\baselineskip
@@ -585,7 +601,7 @@ Studies have found a higher abundance of \fishnameGSR\ at reefs with small numbe
             \centering 
             \includegraphics[width=\textwidth]{GSR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameGSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameGSR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexGSR}
         \end{subfigure}
         \quad
@@ -593,11 +609,11 @@ Studies have found a higher abundance of \fishnameGSR\ at reefs with small numbe
             \centering 
             \includegraphics[width=\textwidth]{GSR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameGSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameGSR.}}    
             \label{fig:allsurveysmaturityGSR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameGSR\ data. The shaded cells give an approximation of the area where \fishnameGSR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameGSR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameGSR\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:GSRfigures}
     \end{figure*}
     
@@ -651,7 +667,7 @@ Approximately 50 to 60\% of both sexes have reached sexual maturity at 190 mm \c
             \centering
             \includegraphics[width=\textwidth]{LST/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameLST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameLST.}}    
             \label{fig:surveycatchLST}
         \end{subfigure}
         \hfill
@@ -659,7 +675,7 @@ Approximately 50 to 60\% of both sexes have reached sexual maturity at 190 mm \c
             \centering 
             \includegraphics[width=\textwidth]{LST/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameLST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameLST.}}    
            \label{fig:allsurveyslengthLST}
         \end{subfigure}
         \vskip\baselineskip
@@ -667,7 +683,7 @@ Approximately 50 to 60\% of both sexes have reached sexual maturity at 190 mm \c
             \centering 
             \includegraphics[width=\textwidth]{LST/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameLST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameLST\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexLST}
         \end{subfigure}
         \quad
@@ -675,11 +691,11 @@ Approximately 50 to 60\% of both sexes have reached sexual maturity at 190 mm \c
             \centering 
             \includegraphics[width=\textwidth]{LST/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameLST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameLST.}}    
             \label{fig:allsurveysmaturityLST}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameLST\ data. The shaded cells give an approximation of the area where \fishnameLST\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameLST\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameLST\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:LSTfigures}
     \end{figure*}
 \newpage
@@ -733,7 +749,7 @@ Other species caught with \fishnamePAC\ include \fishnameARF\ (\emph{Atheresthes
             \centering
             \includegraphics[width=\textwidth]{PAC/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnamePAC\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey catch (kg) of \fishnamePAC.}}    
             \label{fig:surveycatchPAC}
         \end{subfigure}
         \hfill
@@ -741,7 +757,7 @@ Other species caught with \fishnamePAC\ include \fishnameARF\ (\emph{Atheresthes
             \centering 
             \includegraphics[width=\textwidth]{PAC/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnamePAC\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnamePAC.}}    
            \label{fig:allsurveyslengthPAC}
         \end{subfigure}
         \vskip\baselineskip
@@ -749,7 +765,7 @@ Other species caught with \fishnamePAC\ include \fishnameARF\ (\emph{Atheresthes
             \centering 
             \includegraphics[width=\textwidth]{PAC/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnamePAC\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnamePAC\@. Classified as 1 for male and 2 for female.}}    
 
 \label{fig:allsurveyssexPAC}
         \end{subfigure}
@@ -758,11 +774,11 @@ Other species caught with \fishnamePAC\ include \fishnameARF\ (\emph{Atheresthes
             \centering 
             \includegraphics[width=\textwidth]{PAC/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnamePAC\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnamePAC.}}    
             \label{fig:allsurveysmaturityPAC}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnamePAC\ data. The shaded cells give an approximation of the area where \fishnamePAC\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnamePAC\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnamePAC\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:PACfigures}
     \end{figure*}
     
@@ -824,7 +840,7 @@ Petrale sole is an important component of the offshore ecosystem. Studies indica
             \centering
             \includegraphics[width=\textwidth]{PEL/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnamePEL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnamePEL.}}    
             \label{fig:surveycatchPEL}
         \end{subfigure}
         \hfill
@@ -832,7 +848,7 @@ Petrale sole is an important component of the offshore ecosystem. Studies indica
             \centering 
             \includegraphics[width=\textwidth]{PEL/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnamePEL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnamePEL.}}    
            \label{fig:allsurveyslengthPEL}
         \end{subfigure}
         \vskip\baselineskip
@@ -840,7 +856,7 @@ Petrale sole is an important component of the offshore ecosystem. Studies indica
             \centering 
             \includegraphics[width=\textwidth]{PEL/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnamePEL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnamePEL\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexPEL}
         \end{subfigure}
         \quad
@@ -848,11 +864,11 @@ Petrale sole is an important component of the offshore ecosystem. Studies indica
             \centering 
             \includegraphics[width=\textwidth]{PEL/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnamePEL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnamePEL.}}    
             \label{fig:allsurveysmaturityPEL}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnamePEL\ data. The shaded cells give an approximation of the area where \fishnamePEL\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnamePEL\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnamePEL\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:PELfigures}
     \end{figure*}
     
@@ -905,7 +921,7 @@ Predators of \fishnamePOP\ include sablefish, Alaska Pollock, Atka Mackerel (\em
             \centering
             \includegraphics[width=\textwidth]{POP/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnamePOP\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey catch (kg) of \fishnamePOP.}}    
             \label{fig:surveycatchPOP}
         \end{subfigure}
         \hfill
@@ -913,7 +929,7 @@ Predators of \fishnamePOP\ include sablefish, Alaska Pollock, Atka Mackerel (\em
             \centering 
             \includegraphics[width=\textwidth]{POP/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnamePOP\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnamePOP.}}    
            \label{fig:allsurveyslengthPOP}
         \end{subfigure}
         \vskip\baselineskip
@@ -921,7 +937,7 @@ Predators of \fishnamePOP\ include sablefish, Alaska Pollock, Atka Mackerel (\em
             \centering 
             \includegraphics[width=\textwidth]{POP/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnamePOP\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnamePOP\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexPOP}
         \end{subfigure}
         \quad
@@ -929,11 +945,11 @@ Predators of \fishnamePOP\ include sablefish, Alaska Pollock, Atka Mackerel (\em
             \centering 
             \includegraphics[width=\textwidth]{POP/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnamePOP\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnamePOP.}}    
             \label{fig:allsurveysmaturityPOP}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnamePOP\ data. The shaded cells give an approximation of the area where \fishnamePOP\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnamePOP\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnamePOP\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:POPfigures}
     \end{figure*}
     
@@ -988,7 +1004,7 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering
             \includegraphics[width=\textwidth]{RAT/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameRAT\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameRAT.}}    
             \label{fig:surveycatchRAT}
         \end{subfigure}
         \hfill
@@ -996,7 +1012,7 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering 
             \includegraphics[width=\textwidth]{RAT/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameRAT\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameRAT.}}    
            \label{fig:allsurveyslengthRAT}
        \end{subfigure}
         \vskip\baselineskip
@@ -1004,7 +1020,7 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering 
             \includegraphics[width=\textwidth]{RAT/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameRAT\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameRAT\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexRAT}
         \end{subfigure}
 %        \quad
@@ -1012,11 +1028,11 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
 %            \centering 
  %           \includegraphics[width=\textwidth]{RAT/MeanMaturityAllSu%rveys_grid_3km_gridded.eps}
 %            \caption[]%
-%            {{\small Mean survey fish maturity (scored from 0 to 7)  %of \fishnameRAT\ in grid cells 3 km x 3 km for fishing events from %all groundfish trawl surveys for all years.}}    
+%            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameRAT.}}    
 %            \label{fig:allsurveysmaturityRAT}
 %        \end{subfigure}
         \caption[]%
-        {\small Summary of \fishnameRAT\ data. The shaded cells give an approximation of the area where \fishnameRAT\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameRAT\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameRAT\ was encountered. See Table XX for a list of surveys.} 
        \label{fig:RATfigures}
     \end{figure*}
     
@@ -1049,17 +1065,17 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
 \newpage
 
 
-%\section{\fishnameROL}
-%\subsection{\LH}
-%\fishnameROL\ extends from southern California to the Bering and %Okhotsk seas to Korea and the Sea of Japan. The species is ubiquitous throughout \bc\ and is particularly abundant from Cape Scott to Dixon Entrance \citep{hart1973}. It is mostly caught at shallow depths (37 m to 55 m) but occurs from the surface to 575 m. Generally, it is scarce below 183 m depth \citep{forr69, hart1973, as88}. Adults utilise sand and gravel bottom habitat \citep{om00}.
-%Spawning grounds north of Vancouver Island and in Hecate Strait have not be located. Their eggs are yellowish-orange, demersal and adhesive with a diameter of 0.92 mm. \fishnameROL\ larvae are approximately 5 mm long after hatching \citep{hart1973}. 
-%The oldest observed female was 22 years (52 cm) while the oldest male was 15 years (41 cm). 
+\section{\fishnameROL}
+\subsection{\LH}
+\fishnameROL\ extends from southern California to the Bering and Okhotsk seas to Korea and the Sea of Japan. The species is ubiquitous throughout \bc\ and is particularly abundant from Cape Scott to Dixon Entrance \citep{hart1973}. It is mostly caught at shallow depths (37 m to 55 m) but occurs from the surface to 575 m. Generally, it is scarce below 183 m depth \citep{forr69, hart1973, as88}. Adults utilise sand and gravel bottom habitat \citep{om00}.
+Spawning grounds north of Vancouver Island and in Hecate Strait have not be located. Their eggs are yellowish-orange, demersal and adhesive with a diameter of 0.92 mm. \fishnameROL\ larvae are approximately 5 mm long after hatching \citep{hart1973}. 
+The oldest observed female was 22 years (52 cm) while the oldest male was 15 years (41 cm). 
 
-%\newpage
-%\subsection{\PrPr}
-%\fishnameROL\ are predated on by \fishnamePAC\.
+\newpage
+\subsection{\PrPr}
+\fishnameROL\ are predated on by \fishnamePAC\@.
 
-%Prey of \fishnameROL\ is diverse and includes amphipods, benthic copepods, bivalves, crabs, polychaetes, brittle stars, sea urchins, shrimps, prawns and bony fish \citep{bl88}.
+Prey of \fishnameROL\ is diverse and includes amphipods, benthic copepods, bivalves, crabs, polychaetes, brittle stars, sea urchins, shrimps, prawns and bony fish \citep{bl88}.
 
 \subsection{Environment}
 
@@ -1075,7 +1091,7 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering
             \includegraphics[width=\textwidth]{ROL/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameROL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameROL.}}    
             \label{fig:surveycatchROL}
         \end{subfigure}
         \hfill
@@ -1083,7 +1099,7 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering 
             \includegraphics[width=\textwidth]{ROL/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameROL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameROL.}}    
            \label{fig:allsurveyslengthROL}
         \end{subfigure}
         \vskip\baselineskip
@@ -1091,7 +1107,7 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering 
             \includegraphics[width=\textwidth]{ROL/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameROL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameROL\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexROL}
         \end{subfigure}
         \quad
@@ -1099,11 +1115,11 @@ They are known to feed on mollusks, crustaceans, echinoderms, worms and fishes \
             \centering 
             \includegraphics[width=\textwidth]{ROL/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameROL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameROL.}}    
             \label{fig:allsurveysmaturityROL}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameROL\ data. The shaded cells give an approximation of the area where \fishnameROL\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameROL\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameROL\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:ROLfigures}
     \end{figure*}
     
@@ -1157,7 +1173,7 @@ They feed on krill, shrimps and small fishes \citep{lyt02}.
             \centering
             \includegraphics[width=\textwidth]{RSR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameRSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameRSR.}}    
             \label{fig:surveycatchRSR}
         \end{subfigure}
         \hfill
@@ -1165,7 +1181,7 @@ They feed on krill, shrimps and small fishes \citep{lyt02}.
             \centering 
             \includegraphics[width=\textwidth]{RSR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameRSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameRSR.}}    
            \label{fig:allsurveyslengthRSR}
         \end{subfigure}
         \vskip\baselineskip
@@ -1173,7 +1189,7 @@ They feed on krill, shrimps and small fishes \citep{lyt02}.
             \centering 
             \includegraphics[width=\textwidth]{RSR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameRSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameRSR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexRSR}
         \end{subfigure}
         \quad
@@ -1181,11 +1197,11 @@ They feed on krill, shrimps and small fishes \citep{lyt02}.
             \centering 
             \includegraphics[width=\textwidth]{RSR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameRSR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameRSR.}}    
             \label{fig:allsurveysmaturityRSR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameRSR\ data. The shaded cells give an approximation of the area where \fishnameRSR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameRSR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameRSR\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:RSRfigures}
     \end{figure*}
     
@@ -1241,7 +1257,7 @@ Predators of \fishnameRXL\ include Pacific sleeper sharks, \fishnamePAC\, Califo
             \centering
             \includegraphics[width=\textwidth]{RXL/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameRXL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameRXL.}}    
             \label{fig:surveycatchRXL}
         \end{subfigure}
         \hfill
@@ -1249,7 +1265,7 @@ Predators of \fishnameRXL\ include Pacific sleeper sharks, \fishnamePAC\, Califo
             \centering 
             \includegraphics[width=\textwidth]{RXL/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameRXL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameRXL.}}    
            \label{fig:allsurveyslengthRXL}
         \end{subfigure}
         \vskip\baselineskip
@@ -1257,7 +1273,7 @@ Predators of \fishnameRXL\ include Pacific sleeper sharks, \fishnamePAC\, Califo
             \centering 
             \includegraphics[width=\textwidth]{RXL/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameRXL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameRXL\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexRXL}
         \end{subfigure}
         \quad
@@ -1265,11 +1281,11 @@ Predators of \fishnameRXL\ include Pacific sleeper sharks, \fishnamePAC\, Califo
             \centering 
             \includegraphics[width=\textwidth]{RXL/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameRXL\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameRXL.}}    
             \label{fig:allsurveysmaturityRXL}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameRXL\ data. The shaded cells give an approximation of the area where \fishnameRXL\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameRXL\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameRXL\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:RXLfigures}
     \end{figure*}
  
@@ -1329,7 +1345,7 @@ Within this range, \fishnameSBF\ also tolerate relatively low oxygen concentrati
             \centering
             \includegraphics[width=\textwidth]{SBF/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameSBF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameSBF.}}    
             \label{fig:surveycatchSBF}
         \end{subfigure}
         \hfill
@@ -1337,7 +1353,7 @@ Within this range, \fishnameSBF\ also tolerate relatively low oxygen concentrati
             \centering 
             \includegraphics[width=\textwidth]{SBF/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameSBF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameSBF.}}    
            \label{fig:allsurveyslengthSBF}
         \end{subfigure}
         \vskip\baselineskip
@@ -1345,7 +1361,7 @@ Within this range, \fishnameSBF\ also tolerate relatively low oxygen concentrati
             \centering 
             \includegraphics[width=\textwidth]{SBF/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameSBF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameSBF\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexSBF}
         \end{subfigure}
         \quad
@@ -1353,11 +1369,11 @@ Within this range, \fishnameSBF\ also tolerate relatively low oxygen concentrati
             \centering 
             \includegraphics[width=\textwidth]{SBF/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameSBF\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameSBF.}}    
             \label{fig:allsurveysmaturitySBF}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameSBF\ data. The shaded cells give an approximation of the area where \fishnameSBF\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameSBF\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameSBF\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:SBFfigures}
     \end{figure*}
        
@@ -1416,7 +1432,7 @@ They form loose groups with other rockfish species \citep{lyt02}.
             \centering
             \includegraphics[width=\textwidth]{SGR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameSGR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameSGR.}}    
             \label{fig:surveycatchSGR}
         \end{subfigure}
         \hfill
@@ -1424,7 +1440,7 @@ They form loose groups with other rockfish species \citep{lyt02}.
             \centering 
             \includegraphics[width=\textwidth]{SGR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameSGR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameSGR.}}    
            \label{fig:allsurveyslengthSGR}
         \end{subfigure}
         \vskip\baselineskip
@@ -1432,7 +1448,7 @@ They form loose groups with other rockfish species \citep{lyt02}.
             \centering 
             \includegraphics[width=\textwidth]{SGR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameSGR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameSGR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexSGR}
         \end{subfigure}
         \quad
@@ -1440,11 +1456,11 @@ They form loose groups with other rockfish species \citep{lyt02}.
             \centering 
             \includegraphics[width=\textwidth]{SGR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameSGR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameSGR.}}    
             \label{fig:allsurveysmaturitySGR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameSGR\ data. The shaded cells give an approximation of the area where \fishnameSGR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameSGR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameSGR\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:SGRfigures}
     \end{figure*}
     
@@ -1507,7 +1523,7 @@ Other important prey of shortspine thornyheads include crabs, zooplankton, amphi
             \centering
             \includegraphics[width=\textwidth]{SST/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameSST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameSST.}}    
             \label{fig:surveycatchSST}
         \end{subfigure}
         \hfill
@@ -1515,7 +1531,7 @@ Other important prey of shortspine thornyheads include crabs, zooplankton, amphi
             \centering 
             \includegraphics[width=\textwidth]{SST/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameSST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameSST.}}    
            \label{fig:allsurveyslengthSST}
         \end{subfigure}
         \vskip\baselineskip
@@ -1523,7 +1539,7 @@ Other important prey of shortspine thornyheads include crabs, zooplankton, amphi
             \centering 
             \includegraphics[width=\textwidth]{SST/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameSST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameSST\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexSST}
         \end{subfigure}
         \quad
@@ -1531,11 +1547,11 @@ Other important prey of shortspine thornyheads include crabs, zooplankton, amphi
             \centering 
             \includegraphics[width=\textwidth]{SST/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameSST\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameSST.}}    
             \label{fig:allsurveysmaturitySST}
         \end{subfigure}
         \caption[ ]
-       {\small Summary of \fishnameSST\ data. The shaded cells give an approximation of the area where \fishnameSST\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+       {\small Summary of \fishnameSST\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameSST\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:SSTfigures}
     \end{figure*}
     
@@ -1595,7 +1611,7 @@ Adults associate with Yellowtail Rockfish (\emph{Sebastes flavidus}), and in the
             \centering
             \includegraphics[width=\textwidth]{WWR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameWWR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameWWR.}}    
             \label{fig:surveycatchWWR}
         \end{subfigure}
         \hfill
@@ -1603,7 +1619,7 @@ Adults associate with Yellowtail Rockfish (\emph{Sebastes flavidus}), and in the
             \centering 
             \includegraphics[width=\textwidth]{WWR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameWWR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameWWR.}}    
            \label{fig:allsurveyslengthWWR}
         \end{subfigure}
         \vskip\baselineskip
@@ -1611,7 +1627,7 @@ Adults associate with Yellowtail Rockfish (\emph{Sebastes flavidus}), and in the
             \centering 
             \includegraphics[width=\textwidth]{WWR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameWWR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameWWR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexWWR}
         \end{subfigure}
         \quad
@@ -1619,11 +1635,11 @@ Adults associate with Yellowtail Rockfish (\emph{Sebastes flavidus}), and in the
             \centering 
             \includegraphics[width=\textwidth]{WWR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameWWR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameWWR.}}    
             \label{fig:allsurveysmaturityWWR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameWWR\ data. The shaded cells give an approximation of the area where \fishnameWWR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameWWR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameWWR\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:WWRfigures}
     \end{figure*}
     
@@ -1683,7 +1699,7 @@ The depth at which yellowmouth rockfish occurs most frequently is dominated by \
             \centering
             \includegraphics[width=\textwidth]{YMR/SurveyCatchAllSurveys_grid_3km_gridded.eps}
             \caption[]
-            {{\small Mean survey catch (kg) of \fishnameYMR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  }}    
+            {{\small Mean survey catch (kg) of \fishnameYMR.}}    
             \label{fig:surveycatchYMR}
         \end{subfigure}
         \hfill
@@ -1691,7 +1707,7 @@ The depth at which yellowmouth rockfish occurs most frequently is dominated by \
             \centering 
             \includegraphics[width=\textwidth]{YMR/MeanLengthAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish length (mm) of \fishnameYMR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean fish length (mm) of \fishnameYMR.}}    
            \label{fig:allsurveyslengthYMR}
         \end{subfigure}
         \vskip\baselineskip
@@ -1699,7 +1715,7 @@ The depth at which yellowmouth rockfish occurs most frequently is dominated by \
             \centering 
             \includegraphics[width=\textwidth]{YMR/MeanSexAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish sex of \fishnameYMR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years. Classified as 1 for male and 2 for female.}}    
+            {{\small Mean fish sex of \fishnameYMR\@. Classified as 1 for male and 2 for female.}}    
             \label{fig:allsurveyssexYMR}
         \end{subfigure}
         \quad
@@ -1707,11 +1723,11 @@ The depth at which yellowmouth rockfish occurs most frequently is dominated by \
             \centering 
             \includegraphics[width=\textwidth]{YMR/MeanMaturityAllSurveys_grid_3km_gridded.eps}
             \caption[]%
-            {{\small Mean survey fish maturity (scored from 0 to 7)  of \fishnameYMR\ in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}}    
+            {{\small Mean survey fish maturity (scored from 0 to 7) of \fishnameYMR.}}    
             \label{fig:allsurveysmaturityYMR}
         \end{subfigure}
         \caption[ ]
-        {\small Summary of \fishnameYMR\ data. The shaded cells give an approximation of the area where \fishnameYMR\ was encountered by fishing events from all groundfish trawl surveys for all years.  See Table XX for a list of surveys.} 
+        {\small Summary of \fishnameYMR\ data. in grid cells 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.  The shaded cells give an approximation of the area where \fishnameYMR\ was encountered. See Table XX for a list of surveys.} 
         \label{fig:YMRfigures}
     \end{figure*}
     
