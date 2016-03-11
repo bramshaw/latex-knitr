@@ -119,15 +119,11 @@ make.xtable <- function(## seed is a vector of seeds to use for randomness
 x <- rnorm(1000,sd=5,mean=20)
 y <- 2.5*x - 1.0 + rnorm(1000,sd=9,mean=0)
 
-load.galaxy.data() ## Creates global data frame 'A'
+if(!exists("A")){
+  load.galaxy.data() ## Creates global data frame 'A'
+}
 
-
-
-## Example of a simple table from the Hake assessment.
-## source this file to run the example
-
-rm(list = ls(all=TRUE))
-require(xtable)
+####### CDF temperature quantile table
 
 fmt0 <- function(x, dec.points = 0){
   ## Format x to have supplied number of decimal points
@@ -164,26 +160,31 @@ make.cdfquant.table <- function(species,
                                 placement = "H"       ## Placement of table
 ){
   ## Returns an xtable in the proper format for the executive summary catches
-  
   ## If start.yr > 1991 then US foreign, US JV, and Canadian foreign will be removed since they are all zeroes.
   species <- t(species)
   row.names <- rownames(species)
   row.names <- paste0("\\textbf{", gsub("\\.", " ", row.names), "}")
   species <- cbind(row.names, fmt0(species, digits))
-  
-  colnames(species) <- c("",
-                         "\\textbf{2.5\\%}",
-                         "\\textbf{25\\%}",
-                         "\\textbf{50\\%}",
-                         "\\textbf{75\\%}",
-                         "\\textbf{97.5\\%}")
-  
+
+  ## colnames(species) <- c("",
+  ##                        "\\textbf{2.5\\%}",
+  ##                        "\\textbf{25\\%}",
+  ##                        "\\textbf{50\\%}",
+  ##                        "\\textbf{75\\%}",
+  ##                        "\\textbf{97.5\\%}")
+
   ## Add the extra header spanning multiple columns (for Quantile header)
   addtorow <- list()
   addtorow$pos <- list()
   addtorow$pos[[1]] <- -1
-  addtorow$command <- paste0("& \\multicolumn{", ncol(species) - 1, "}{c}{Quantile}")
-  
+  addtorow$pos[[2]] <- 0
+  addtorow$command <- c(paste0("& \\multicolumn{", ncol(species) - 1, "}{c}{\\textbf{Quantile}} \\\\ "),
+                        paste0(" & \\textbf{2.5\\%}",
+                               " & \\textbf{25\\%}",
+                               " & \\textbf{50\\%}",
+                               " & \\textbf{75\\%}",
+                               " & \\textbf{97.5\\%} \\\\ "))
+
   ## Make the size string for font and space size
   size.string <- paste0("\\fontsize{",font.size,"}{",space.size,"}\\selectfont")
   return(print(xtable(species,
@@ -192,34 +193,21 @@ make.cdfquant.table <- function(species,
                       align = get.align(ncol(species))),
                caption.placement = "top",
                include.rownames = FALSE,
+               include.colnames = FALSE,
                add.to.row = addtorow,
                table.placement = placement,
-               tabular.environment = "tabularx",
-               width = "\\textwidth",
+               tabular.environment = "tabular",
                sanitize.text.function = function(x){x},
                size = size.string))
-  
 }
 
-species <- read.csv("C:/GitHub/SPERA-Maps/Results/Gridded_Data/SurveyTempCDF_Percentiles.csv")
+species <- read.csv("C:/GitHub/SPERA-Maps/Results/Figures/Quantiles_Temperature.csv")
 species <- na.omit(species)
-make.cdfquant.table(species,
-                    xcaption="What you want the table caption to be in the doc..",
-                    xlabel="tab:cdfquant") ## This is the reference you will use in latex to point to this table
-
-
-## Assumes you have the specialcell command in latex:
-## \newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-
-## You would put a knitr code chunk in the RNW file that looks like this:
-## <<total.catches.table, results='asis', echo=FALSE>>=
-##   make.catches.table(catches,
-##                      start.yr = 2006,
-##                      end.yr = 2015,
-##                      weight.factor = 1000,
-##                      xcaption <- "Recent commercial fishery catch (t). Tribal catches are included where applicable.",
-##                      xlabel <- "tab:es-catches",
-##                      font.size = 9,
-##                      space.size = 10,
-##                      placement = "tbp")
-## @
+make.cdfquant.table(species,## The output of the load catches function above.
+                    digits = 2, ## number of digits to show
+                    xcaption = "default", ## Caption to use
+                    xlabel   = "default", ## Latex label to use
+                    font.size = 9,        ## Size of the font for the table
+                    space.size = 10,      ## Size of the spaces for the table
+                    placement = "tbp"       ## Placement of table
+)

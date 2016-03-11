@@ -1,4 +1,4 @@
-%% example.Rnw
+%% SPERA_report.Rnw
 %% A document to show how to use latex and knitr on Windows.
 %% C Grandin, November/December 2015.
 %% There are various commented-out lines which are from previous projects
@@ -35,7 +35,7 @@
 \usepackage{subcaption}         % added for creating 2x2 panel plots. Conflicts with \usepackage{subfig} so that package was commented out below
 \usepackage{amssymb}          %for some mathematical symbols
 \usepackage{amsmath}          %for some mathematical symbols and equation functions
-
+%\usepackage{tabularx}
 \setlength{\parskip}{12pt}
 
 % For hyperlinked references (figures and citations, etc.). The bookmarksdepthlevel allows
@@ -316,7 +316,7 @@ opts_chunk$set(dev='cairo_ps',fig.path='knitr-cache/', fig.dpi=96, fig.width=7.5
 ## constantly compiling the document. If you do this, you will need to
 ## put the require or library statements that the functions use because the
 ## saved environment does not save the libraries as well.
-use.binary.envir <- TRUE
+use.binary.envir <- FALSE
 if(use.binary.envir){
   require(plot3D)
   require(KernSmooth)
@@ -324,7 +324,7 @@ if(use.binary.envir){
   load("./r/.RData")
 }else{
   source("./r/example.r")
-  source("./r/CDFquantiles.r")
+  #source("./r/CDFquantiles.r")
 }
 @
 
@@ -371,13 +371,13 @@ if(use.binary.envir){
 %% so they see the same R objects and those objects can be referenced directly.
 %% There is no difference between this and maindoc, they are both pasted in directly
 %% before the code is knitted.
-\rfoot{Appendix A -- Species Summaries}
-<<appendix-A, child='appendix-A/appendix-A.Rnw'>>=
-@
+%\rfoot{Appendix A -- Species Summaries}
+%<<appendix-A, child='appendix-A/appendix-A.Rnw'>>=
+%@
 
-\rfoot{Appendix B -- Modeling Inputs}
-<<appendix-B, child='appendix-B/appendix-B.Rnw'>>=
-@
+%\rfoot{Appendix B -- Modeling Inputs}
+%<<appendix-B, child='appendix-B/appendix-B.Rnw'>>=
+%@
 
 %% Used when you need to insert outside documents:
 %% \setcounter{page}{68}

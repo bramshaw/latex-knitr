@@ -1,5 +1,5 @@
 %% mainDoc.Rnw - Main part of the document
-%% Note the variables such as \fishname are global from the calling file (example.Rnw)
+%% Note the variables such as \fishname are global from the calling file (SPERA_report.Rnw)
 
 \nonumsection*{ABSTRACT}\addcontentsline{toc}{section}{ABSTRACT}
 
@@ -182,9 +182,9 @@ In general, due to the confounding relationships among temperature, salinity and
 \subsection{ROMS Data}
 Cumulative distribution functions of catch weight were also calculated based on ROMS depth, temperature and salinity data. Catch-weighted depth for \fishnameARF\ was at 59 m for 2.5\% of the biomass, 25\% at less than 108 m, 50\% at less than 138 m, 75\% at les than 164 m and 97.5\% at less than 288 m. These catch-weighted depths were all similar (approximately $\pm$ 5 m) except for the 2.5th percentile which was 13 m deeper for the survey temperature. The catch-weighted depth percentiles for \fishnameDOG\ were very similar between the two data types with all being witin $\pm$ 10 m of each other. 
 
-With respect to temperature-weighted catch, the 2.5th percentile for \fishnameARF\ was at 5.6$^\circ$C, 25\% of the biomass was colder than 6.5$^\circ$C, 50\% at less than 7.0$^\circ$C, 75\% at less than 7.8$^\circ$C and 95\% at less than 9.6$^\circ$C. This represents a wider temperature range (4.0$^\circ$C) for 95\% of the biomass than the survey data (2.6$^\circ$C); however, the the middle 50\% of the ROMS biomass occurred within 1.3$^\circ$C (6.5$^\circ$C to 7.8$^\circ$C), which was smaller than the 1.6$^\circ$C temperature range for the survey data (5.9$^\circ$C to 6.5$^\circ$C). \fishameDOG\ had a similar temperature range between data types, 6.6$^\circ$C for ROMS compared to 7.1$^\circ$C for survey data. In contrast to \fishnameARF\@,the middle 50\% of the biomass occurred in a narrower range of temperatures for ROMS data (7.7$^\circ$C to 9.7$^\circ$C) relative to survey data (6.8$^\circ$C to 10.1$^\circ$C). For both data types, 95\% of the biomass was colder than 12.5$^\circ$C.  
+With respect to temperature-weighted catch, the 2.5th percentile for \fishnameARF\ was at 5.6$^\circ$C, 25\% of the biomass was colder than 6.5$^\circ$C, 50\% at less than 7.0$^\circ$C, 75\% at less than 7.8$^\circ$C and 95\% at less than 9.6$^\circ$C. This represents a wider temperature range (4.0$^\circ$C) for 95\% of the biomass than the survey data (2.6$^\circ$C); however, the the middle 50\% of the ROMS biomass occurred within 1.3$^\circ$C (6.5$^\circ$C to 7.8$^\circ$C), which was smaller than the 1.6$^\circ$C temperature range for the survey data (5.9$^\circ$C to 6.5$^\circ$C). \fishnameDOG\ had a similar temperature range between data types, 6.6$^\circ$C for ROMS compared to 7.1$^\circ$C for survey data. In contrast to \fishnameARF\@,the middle 50\% of the biomass occurred in a narrower range of temperatures for ROMS data (7.7$^\circ$C to 9.7$^\circ$C) relative to survey data (6.8$^\circ$C to 10.1$^\circ$C). For both data types, 95\% of the biomass was colder than 12.5$^\circ$C.  
 
-The are no salinity-weighted catch percentiles to compare between data types or with \citet{psf94}; however, the 2.5th percentile for \fishnamARF\ was for ROMS salinity was less than 34 PSU. The 25th percentile of biomass was for salinity less than 35.5 PSU, 50\% at less than 36.4 PSU, 75\% at less than 37.1 PSU and 97.5\% at less tahn 38.2 PSU. \fishnameDOG\ was similar with a 95th percentile range of from 33.9 to 37.7 PSU. The 25th percentile was for salinities less than 34.3 PSU, 50\% at less than 34.3 PSU and 75\% at salinities less than 35.6 PSU. 
+The are no salinity-weighted catch percentiles to compare between data types or with \citet{psf94}; however, the 2.5th percentile for \fishnameARF\ was for ROMS salinity was less than 34 PSU. The 25th percentile of biomass was for salinity less than 35.5 PSU, 50\% at less than 36.4 PSU, 75\% at less than 37.1 PSU and 97.5\% at less tahn 38.2 PSU. \fishnameDOG\ was similar with a 95th percentile range of from 33.9 to 37.7 PSU. The 25th percentile was for salinities less than 34.3 PSU, 50\% at less than 34.3 PSU and 75\% at salinities less than 35.6 PSU. 
 
 The randomization test (\ref{eq:cdf3})for determining significant differences from random distributions of the ROMS environmental variables indicated that \fishnameARF\ were (or were not) significantly different from the available depths, temperatures and salinities. \fishnameDOG\ had (or did not have) a similar result. Refer to table XX for a summary of significant differences from random distributions.
 
@@ -238,25 +238,6 @@ Here's a reference to an appendix: % \ref{chap:propfemale} and \ref{chap:agecomp
 
 \section{TABLES}
 
-%% \begin{table}[!htp]
-%% \centering
-%% \caption{\label{tab:surveySuitability} Attributes of fishery-independent surveys and evaluation of suitability for stock indexing. RS=Random stratified design, BT=Bottom trawl gear.}
-%% \begin{tabular}{lcccc}
-%% \hline
-%% \textbf{Attribute}              & \textbf{WCVISS} & \textbf{HSSS} & \textbf{HSMSAS} & \textbf{QCSSS} \\
-%% \hline
-%% \textbf{Design}                   &            RS &            RS &             RS &            RS \\
-%% \textbf{Gear}                     &            BT &            BT &             BT &            BT \\
-%% \textbf{Year Range (years)}       & 2004-2014 (6) & 2005-2013 (5) & 1984-2003 (11) & 2003-2013 (7) \\
-%% \textbf{Set Range (avg)}          & 106-179 (153) & 156-236 (189) &   88-161 (105) & 260-281 (269) \\
-%% \textbf{PFMA Areas}               &         3C,3D &         5C,5D &          5C,5D &         5A,5B \\
-%% \textbf{Depth Range (m)}          &        41-660 &        19-420 &         18-232 &        41-626 \\
-%% \textbf{Ageing done (yrs)}        &       Yes (5) &       Yes (5) &        Yes (1) &       Yes (4) \\
-%% \textbf{Comment}                  &               &               &                &               \\
-%% \hline
-%% \end{tabular}
-%% \end{table}
-
 %% The big [H] below tells latex to keep the table/figure here in this spot when using the float package
 %% If it wasn't there, figures and tables would be mixed together due to latex's auto-placement algorithms
 \begin{table}[H]
@@ -286,20 +267,22 @@ $x_{hi}~ =$ & measurement for a hydrographic variable in set $i$ of stratum $h$;
 \end{tabular}
 \end{table}
 
+\newpage
 %%%CDF Quantile table
-%<<make.cdfquant.table, results='asis', echo=FALSE>>=
-%make.cdfquant.table(species,## The output of the load catches function above.
-%                  digits, ## number of digits to show
-%                  xcaption = "Cumulative distribution function %quantiles", ## Caption to use
-%                  xlabel   = "default", ## Latex label to use
-%                  font.size = 9,        ## Size of the font for the table
-%                  space.size = 10,      ## Size of the spaces for the table
-%                  placement = "tbp"       ## Placement of table
-%                               )
-%@
+<<make.cdfquant.table, results='asis', echo=FALSE>>=
+make.cdfquant.table(species,## The output of the load catches function above.
+                  digits = 2, ## number of digits to show
+                  xcaption = "Cumulative distribution function quantiles for survey temperature-weighted catch.", ## Caption to use
+                  xlabel   = "default", ## Latex label to use
+                  font.size = 9,        ## Size of the font for the table
+                  space.size = 10,      ## Size of the spaces for the table
+                  placement = "tbp"       ## Placement of table
+                               )
+@
  
 %% How you call an xtable from latex. Note there is no need for anything other than
 %% the R call to make.xtable. The label can be referenced elsewhere in the document.
+
 <<results='asis', echo=FALSE>>=
 make.xtable(seed=c(1,2,3,4), xcaption=paste0("Example using xtable with some pseudo-random seeded numbers. The function ",
             "get.align makes the left column justified left and the rest justified right which ",
@@ -400,6 +383,19 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 
 \section{FIGURES}
 \subsection{Survey Data}
+
+%%%%%%%%% Survey DEPTH FIGURE
+\newpage
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
+\end{center}
+\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
+\label{fig:allsurveysdepth}
+\end{figure}
+
+\newpage
 %%%%%%%%% SUrvey temp panel FIGURE
 
 \graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
@@ -413,19 +409,22 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 
 \newpage
 
-\subsection{ROMS}
-%%%%%%%%% ROMS DEPTH FIGURE
-\newpage
-\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
-\end{center}
-\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
-\label{fig:allsurveysdepth}
-\end{figure}
+\subsection{BCMCA Data}
+%%%%%%%%% Survey DEPTH FIGURE
+%\newpage
+%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+%\begin{figure}[!htp]
+%\begin{center}
+%\includegraphics[width=6in,keepaspectratio=true]{FILENAME HERE.eps}
+%\end{center}
+%\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for based on BCMCA data.}
+%\label{fig:allsurveysdepth}
+%\end{figure}
 
-\newpage
+%\newpage
+
+\subsection{ROMS}
+
 
 %%%%%%%%% ROMS TEMP FIGURE - ALL YEARS
 
@@ -599,67 +598,3 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 %        \label{fig:cdf.box.ROMS}
 %    \end{figure*}
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[H]
-%\begin{center}
-%<<fig.height=9, fig.width=8>>=
-%random.stuff()
-%@
-%\end{center}
-%\vspace{0mm}
-%\caption{Random points example... Degrees are represented in \latex %like this 0.1$^\circ$ and superscript like this km$^2$)}
-%\label{fig:example-random-stuff}
-%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%\clearpage
- 
-
-%%\begin{figure}[!htp]
-%%\begin{center}
-%%\includegraphics[width=6in,keepaspectratio=true]{maindoc/ARFMaturity.png}
-%%\end{center}
-%\vspace{0mm}
-% To get the grid size in km^2 for the caption:
-% While in the gui for the map, type mean(xtcall(PBSmap)$pdata$area) for the map you currently have loaded.
-%\caption{Mean catch-per-unit-effort (CPUE, kg/h) of \fishname\ in grid cells 0.1$^\circ$ longitude by 0.075$^\circ$ latitude (roughly 57.8~km$^2$). The shaded cells give an approximation of the area where \fishname\ was encountered by fishing events from the groundfish trawl fishery from January 1, 1996 to October 7, 2014. Contours are 200 m and 1000 m isobaths. Red lines are PFMA area boundaries.} \label{fig:cpue} \end{figure}
-%%\caption{Mean Maturity} \label{fig:maturity} \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%\begin{figure}[H]
-%\begin{center}
-%<<fig.height=5, fig.width=8>>=
-%brownian.motion()
-%@
-%\end{center}
-%%\vspace{0mm}
-%\caption{Brownian motion example..}
-%\label{fig:example-brownian-motion}
-%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[H]
-%\begin{center}
-%<<fig.height=9, fig.width=8>>=
-%half.torus()
-%@
-%\end{center}
-%\vspace{0mm}
-%\caption{Half torus example..}
-%\label{fig:example-half-torus}
-%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%
-%\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[H]
-%\begin{center}
-%<<fig.height=9, fig.width=8>>=
-%plot.galaxy.data()
-%@
-%\end{center}
-%%\vspace{0mm}
-%\caption{Galaxy example}
-%\label{fig:example-galaxy}
-%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%
