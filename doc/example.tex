@@ -1,0 +1,1059 @@
+%% SPERA_report.Rnw
+%% A document to show how to use latex and knitr on Windows.
+%% C Grandin, November/December 2015.
+%% There are various commented-out lines which are from previous projects
+%% They are left in for examples of what can be done.
+%% There may be packages included which are not required for this example
+%%  document but would be required for a real CSAS document.
+\documentclass[11pt]{book}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{resDocSty}
+\usepackage{appendix}
+\usepackage{cite}
+%%\usepackage(natbib) %conflicts with cite package
+%% need array when specifying a ragged right column:  >{\raggedright\arraybackslash}{p2in}.
+\usepackage{longtable,array}
+%% \renewcommand{\chaptername}{Appendix}
+%% \addto\captionsenglish{\renewcommand\chaptername{Part}}
+\usepackage{import}            % for figures in chapter subdirectories
+\usepackage{float}             % Allow figures and tables to be controlled better (avoid the floating).
+\usepackage{caption}         %to number multiple figures with same figure number, such as multi-page panel plots
+\DeclareCaptionLabelFormat{continued}{#1~#2 (Continued)}   %for functions related to multipage plots with same figure number
+\captionsetup[ContinuedFloat]{labelformat=continued}   %for functions related to multipage plots with same figure number
+% Had these for YMR Eqns appendix:
+% \renewcommand{\footrulewidth}{0.4pt}
+% \renewcommand{\headrulewidth}{0pt}
+
+\usepackage{alltt}             %% Allows symbols inside a verbatim-type section
+\usepackage{listings}          %% For code listing with syntax highlighting
+\usepackage{graphicx}          % For inclusion of figures
+\usepackage{verbatim,fancyvrb} % verbatim package allows blocks with special characters to be shown easily.
+\usepackage{xifthen}           % provides \ifthenelse and \isempty
+\usepackage{color, colortbl}
+\usepackage{arydshln}          % For dashed lines in tables (has to be loaded after other stuff)
+\usepackage{pdfpages}          % So we can import PDFs into the document (e.g. request for science advice).
+\usepackage[parfill]{parskip}  % So paragraphs will have a blank line between them
+\usepackage{subcaption}         % added for creating 2x2 panel plots. Conflicts with \usepackage{subfig} so that package was commented out below
+\usepackage{amssymb}          %for some mathematical symbols
+\usepackage{amsmath}          %for some mathematical symbols and equation functions
+%\usepackage{tabularx}
+\setlength{\parskip}{12pt}
+
+% For hyperlinked references (figures and citations, etc.). The bookmarksdepthlevel allows
+%  the TOC to be shown in the bookmarks tree in the output PDF.
+
+%% START - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
+%% \usepackage[bookmarks,bookmarksopen,bookmarksdepth=4]{hyperref}
+
+%%  \hypersetup{                   % Set up the hyperref options here
+%%     pdftitle={Linking environmental factors to distribution and productivity of %%     groundfish species in the Hecate Strait and Queen Charlotte Sound, British Columbia},
+%%     pdfauthor={Robyn Forrest, Jean-Baptiste Lecomte and Brock Ramshaw},
+%%     pdfsubject={Stock Assessment},
+%%     %pdfkeywords={keyword1, keyword2},
+%%     bookmarksnumbered=true,
+%%     bookmarksopen=true,
+%%     bookmarksopenlevel=1,
+%%     colorlinks=false,   % Must be false for CSAS submission. This makes it harder to find the links but they stupidly require it.
+%%     hidelinks=true,     % Necessary to remove boxes around hyperlinks for submission
+%%     %linkcolor=blue,    % Commented out for the submission
+%%     %allcolors=blue,    % Commented out for the submission
+%%     %citecolor=cyan,    % Commented out for the submission
+%%     pdfstartview=Fit,
+%%     pdfpagemode=UseOutlines,
+%%     breaklinks=true     % Allows the list of figures and tables to have wrapping text (since they are actually hyperlinks).
+%%     %pdfpagelayout=TwoPageRight
+%% }
+%% END - COMMENTED OUT TO AVOID HYPERREF COLLISIONS
+
+%% Use the following codes for references within the document.
+%%   chap: chapter
+%%    sec: section
+%% subsec: subsection
+%%   fig: figure
+%%    tab: table
+%%     eq: equation
+%%    lst: code listing
+%%    itm: enumerated list item
+%%    app: appendix subsection
+\usepackage{xspace}            %% Provide the LaTeX and TeX symbols
+\usepackage{hypcap}            %% So links will anchor at figure, not caption
+%\usepackage{subfig}            %% For two-panel plots
+\usepackage{scrextend}         %% For indenting blocks of text with 'addmargin'
+\usepackage{relsize}           %% For mathlarger, which makes equations bigger
+\usepackage{algorithm}         %% For display of pseudocode
+\usepackage{algpseudocode}     %% For display of pseudocode
+\usepackage{linegoal}          %% For display of pseudocode
+%% A \Let command for defining assignments within the algorithmic environment which
+%% supports automatic indentation when the second argument is too long to fit
+%% on one line
+\newcommand*{\Let}[2]{\State #1 $\gets$
+\parbox[t]{\linegoal}{#2\strut}}
+%% A \State command that supports automatic indentation when the argument's
+%% content is too long to fit on one line
+\newcommand*{\LongState}[1]{\State
+\parbox[t]{\linegoal}{#1\strut}}
+
+\usepackage{enumitem}          % To remove spacing between list items [noitemsep,nolistsep]
+\newlist{longitem}{enumerate}{5}
+\setlist[longitem,1]{label=\arabic*)}
+\setlist[longitem,2]{label=\alph*)}
+\setlist[longitem,3]{label=\roman*)}
+\setlist[longitem,4]{label=\arabic*)}
+\setlist[longitem,5]{label=\alph*)}
+
+\definecolor{rowclr}{RGB}{255, 192, 203}
+\newcommand{\sQuote}[1]{`#1'}
+\newcommand{\dQuote}[1]{``#1''}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\gfrac}[2]{\genfrac{}{}{}{0}{#1}{#2}}
+
+\newcommand\bestfig[6]{ % #1=filename, #2=main caption, #3=figure height, #4=short caption #5=file extension #6=directory
+	%% Needs package epstopdf to work
+	\begin{figure}[htpb] %[htbp]
+	\centering
+	\ifthenelse{ \isempty{#5} \OR \equal{#5}{eps} }
+		{\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#6#1.eps}}
+		{\setlength\fboxsep{0pt}
+		 \setlength\fboxrule{0pt}
+		 \fbox{\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#6#1.#5}}}
+	%% source: http://xelatex.blogspot.ca/2008/03/newcommand-with-optional-argument.html
+	\ifthenelse{\isempty{#4}}
+		{\caption[#2]{#2}}  % \vspace{-2ex}} AME removing
+		{\caption[#4]{#2}}  % \vspace{-2ex}}  ``
+	\label{fig:#1}
+	\end{figure}
+        }
+
+\newcommand\pbsfig[5]{    % #1=filename, #2=main caption, #3=figure height, #4=short caption, #5=directory
+	\begin{figure}[tp] %[htbp]  Rowan had ht!
+	\centering
+	\includegraphics[width=6.5in,height=#3in,keepaspectratio=TRUE]{#5#1.eps}
+	%% source: http://xelatex.blogspot.ca/2008/03/newcommand-with-optional-argument.html
+	\ifthenelse{\isempty{#4}}
+		{\caption[#2]{#2}\vspace{-2ex}}
+		{\caption[#4]{#2}\vspace{-2ex}}
+	\label{fig:#1}
+	\end{figure}
+	%\clearpage
+}
+
+%% ** Declare global variables (commands) here **
+%% Filenames used for this project
+\newcommand{\rdata}{.RData}
+\newcommand{\rfile}{example.r}
+\newcommand{\texfile}{example.tex}
+\newcommand{\rnwexamplefile}{example.Rnw}
+\newcommand{\rnwmaindocfile}{SPERA-mainDoc.Rnw}
+\newcommand{\rnwappendixAfile}{appendix-A.Rnw}
+\newcommand{\rnwappendixBfile}{appendix-B.Rnw}
+
+%% Next two lines provide the LaTeX and TeX symbols (from xspace package)
+\newcommand{\latex}{\LaTeX\xspace}
+\newcommand{\tex}{\TeX\xspace}
+%% Allows the Sexpr command to be shown as text in the final document for example reasons
+\newcommand{\ShowSexpr}[1]{\texttt{{\char`\\}Sexpr\{#1\}}}
+%% eor - Show two things with a vertical bar between them
+\newcommand{\eor}[2]{{#1$\Vert$#2}}
+%% bM - makes equations larger
+\newcommand{\bM}[1]{\mathlarger{\mathlarger{#1}}}
+%% Allow newline breaks in a table cell: syntax is \specialcell{first line\\secondline}
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\fishnameARF}{Arrowtooth Flounder}
+\newcommand{\sciencenameARF}{Atheresthes stomias}
+\newcommand{\familynameARF}{Pleuronectidae}
+\newcommand{\commonnameARF}{Turbot}
+
+\newcommand{\fishnameBOR}{Bocaccio Rockfish}
+\newcommand{\sciencenameBOR}{Sebastes paucispinis}
+\newcommand{\familynameBOR}{Sebastidae}
+\newcommand{\commonnameBOR}{}
+
+\newcommand{\fishnameCAR}{Canary Rockfish}
+\newcommand{\sciencenameCAR}{Sebastes pinniger}
+\newcommand{\familynameCAR}{Sebastidae}
+\newcommand{\commonnameCAR}{}
+
+\newcommand{\fishnameDOG}{Spiny Dogfish}
+\newcommand{\sciencenameDOG}{Squalus acanthias}
+\newcommand{\familynameDOG}{Squalidae}
+\newcommand{\commonnameDOG}{}
+
+\newcommand{\fishnameDOL}{Dover Sole}
+\newcommand{\sciencenameDOL}{Microstomus pacificus}
+\newcommand{\familynameDOL}{Pleuronectidae}
+\newcommand{\commonnameDOL}{}
+
+\newcommand{\fishnameENL}{English Sole}
+\newcommand{\sciencenameENL}{Parophrys vetulus}
+\newcommand{\familynameENL}{Pleuronectidae}
+\newcommand{\commonnameENL}{}
+
+\newcommand{\fishnameGSR}{Greenstripe Rockfish}
+\newcommand{\sciencenameGSR}{Sebastes elongatus}
+\newcommand{\familynameGSR}{Sebastidae}
+\newcommand{\commonnameGSR}{}
+
+\newcommand{\fishnameLST}{Longspine Thornyhead}
+\newcommand{\sciencenameLST}{Sebastolobus altivelis}
+\newcommand{\familynameLST}{Sebastidae}
+\newcommand{\commonnameLST}{}
+
+\newcommand{\fishnamePAC}{Pacific Cod}
+\newcommand{\sciencenamePAC}{Gadus macrocephalus}
+\newcommand{\familynamePAC}{Gadidae}
+\newcommand{\commonnamePAC}{}
+
+\newcommand{\fishnamePEL}{Petrale Sole}
+\newcommand{\sciencenamePEL}{Eopsetta jordani}
+\newcommand{\familynamePEL}{Pleuronectidae}
+\newcommand{\commonnamePEL}{}
+
+\newcommand{\fishnamePOP}{Pacific Ocean Perch}
+\newcommand{\sciencenamePOP}{Sebastidae}
+\newcommand{\familynamePOP}{Sebastidae}
+\newcommand{\commonnamePOP}{}
+
+\newcommand{\fishnameRAT}{Ratfish}
+\newcommand{\sciencenameRAT}{Hydrolagus colliei}
+\newcommand{\familynameRAT}{Chimaeridae}
+\newcommand{\commonnameRAT}{Spotted Ratfish}
+
+\newcommand{\fishnameROL}{Rock Sole}
+\newcommand{\sciencenameROL}{Lepidopsetta bilineata}
+\newcommand{\familynameROL}{Pleuronectidae}
+\newcommand{\commonnameROL}{}
+
+\newcommand{\fishnameRSR}{Redstripe Rockfish}
+\newcommand{\sciencenameRSR}{Sebastes proriger}
+\newcommand{\familynameRSR}{Sebastidae}
+\newcommand{\commonnameRSR}{}
+
+\newcommand{\fishnameRXL}{Rex Sole}
+\newcommand{\sciencenameRXL}{Glyptocephalus zachirus}
+\newcommand{\familynameRXL}{Pleuronectidae}
+\newcommand{\commonnameRXL}{}
+
+\newcommand{\fishnameSGR}{Silvergray Rockfish}
+\newcommand{\sciencenameSGR}{Sebastes brevispinis}
+\newcommand{\familynameSGR}{Sebastidae}
+\newcommand{\commonnameSGR}{}
+
+\newcommand{\fishnameSBF}{Sablefish}
+\newcommand{\sciencenameSBF}{Anoplopoma fimbria}
+\newcommand{\familynameSBF}{Anoplopomatidae}
+\newcommand{\commonnameSBF}{Black Cod}
+
+\newcommand{\fishnameSST}{Shortspine Thornyhead}
+\newcommand{\sciencenameSST}{Sebastolobus alascanus}
+\newcommand{\familynameSST}{Sebastidae}
+\newcommand{\commonnameSST}{}
+
+\newcommand{\fishnameWWR}{Widow Rockfish}
+\newcommand{\sciencenameWWR}{Sebastes entomelas}
+\newcommand{\familynameWWR}{Sebastidae}
+\newcommand{\commonnameWWR}{}
+
+\newcommand{\fishnameYMR}{Yellowmouth Rockfish}
+\newcommand{\sciencenameYMR}{Sebastes reedi}
+\newcommand{\familynameYMR}{Sebastidae}
+\newcommand{\commonnameYMR}{}
+
+\newcommand{\Avuln}{Age-at-50\%-vulnerability}
+\newcommand{\Amat}{Age-at-50\%-maturity}
+\newcommand{\amat}{age-at-50\%-maturity}
+\newcommand{\bc}{BC}
+\newcommand{\BC}{British Columbia}
+
+\newcommand{\LH}{Life History}
+\newcommand{\PrPr}{Predators and Prey}
+%% For subscripts in text mode
+\newcommand{\subscr}[1]{$_{\text{#1}}$}
+
+%% Headers and footers
+%% For Res Doc, best to have a left and a right footer
+%%  (and/or header), not just one (for double-sided printing).
+%%
+%% \lhead{DRAFT -- Non-citable working paper}  % Omit for final ResDoc.
+\lhead{}
+\rhead{}
+\lfoot{SPERA} %% Species common name for left footer
+\rfoot{Pacific Region} %% The area of the assessment for right footer
+%% \rfoot{WP 2012/P02a}     %% Change to appendix number for appendices
+                            %% Will probably delete footers in main text
+                            %%  for final Res Doc.
+
+%% \linenumbers             %% Uncomment to add in line numbers
+%% \modulolinenumbers[5]    %% just number every 5th line
+%% \def\AppLet{F}           %% Appendix letter - we had this
+                            %%  to number equations in Appendix
+                            %%  F as (F.17) etc.
+%% \def\StartP{102}         %% page start
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+%% Start by sourcing your R code here. The R environment will persist throughout the latex code,
+%% so anything sourced or required here will be accessible later on in the latex knitr chunks.
+%% Note the start and end bracketing for this knitr chunk <<>>= and @.
+%% Sourcing all code here, then calling the plot functions later will be much faster
+%% and make for more maintanable code.
+
+
+
+\input{preamble}            %% Table of contents, etc.
+% \setcounter{chapter}{0}
+% \setcounter{table}{0}
+% \setcounter{figure}{0}
+\setcounter{secnumdepth}{5} %% To number subsubheadings-ish
+
+%% To number sections, tables etc. as 1, 2, 3, not 1.1 etc. (where
+%%  the first 1 would be chapter number).
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\theequation}{\arabic{equation}}
+
+%% Here is where the maindoc Rnw file is inserted.
+%% It is simply pasted in here by knitr, just before the knitting is done,
+%% So the final tex file will include everything.
+
+%% mainDoc.Rnw - Main part of the document
+%% Note the variables such as \fishname are global from the calling file (SPERA_report.Rnw)
+
+\nonumsection*{ABSTRACT}\addcontentsline{toc}{section}{ABSTRACT}
+
+Summary of objectives, methods and results...
+
+\newpage
+
+\nonumsection*{R\'ESUM\'E}\addcontentsline{toc}{section}{R\'ESUM\'E}
+
+Usually the french version of the abstract goes here, but it is included here to show how accents might be added to text and how non-numbered sections work.
+
+\clearpage
+
+%% Need numbering back to Arabic.
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{INTRODUCTION}
+Hecate Strait and Queen Charlotte Sound contain some of the most productive fishing grounds in British Columbia (BC), providing key habitat for many commercially important groundfish species. This project will employ multivariate statistics and geostatistical approaches to analyse relationships between environmental factors and distribution and productivity of key groundfish populations in Hecate Strait and Queen Charlotte Sound. The project will improve advice for management of Pacific groundfish stocks by: (i) improving understanding of environmental drivers of groundfish distribution and productivity needed for ecosystem-based management; (ii) improved estimates of abundance for key species; (iii) identification of juvenile habitats;  (iv) provision of a baseline for understanding impacts of environmental change on species distribution; and (v) identification of species that could indicate ecosystem change through shifts in distribution and productivity.
+
+Distribution and abundance of groundfish species is associated with invariant (e.g., depth, bottom-type) and variable (e.g., temperature, salinity) environmental factors \citep{psf94, roop05, roop08}.  Measuring relationships between these factors and distribution and abundance is the first step in understanding drivers of productivity (recruitment, growth, mortality), which is a critical component of ecosystem-based management. This project will employ statistical and hierarchical Bayesian geostatistical models \citep{roop05, roop08, lec13, lec13b} to analyse relationships between environmental factors and distribution, abundance and size structure of a set of key, commercially harvested groundfish species in Hecate Strait and Queen Charlotte Sound. Models will utilize data from commercial trawl logbooks and fishery independent surveys. Temperature and salinity data from the Regional Oceanographic Model System (ROMS) \citep{mf12} provided key model inputs.
+
+Results for each species will include maps of predicted distribution and abundance of adults and juveniles; Bayesian predictive probability distributions of the relationships between habitat and environmental factors and abundance; and plots of the distribution of adults and juveniles along environmental gradients. Species most likely to be impacted by large environmental changes (e.g., ocean temperature) will be identified. Working with our external collaborator, results for a subset of species will be compared to results from Alaska to test generality of results and identify key differences. The project will provide updated estimates of abundance for the species of interest and will identify locations that may represent critical juvenile habitat. 
+
+In the long-term, the project will provide important baseline data for understanding potential future impacts of environmental change. Some species (e.g., Pacific Cod) are known to vary their habitat with depth to maintain a limited temperature range \citep{psf94}, indicating that their distribution could be strongly affected by long-term changes in ocean temperature. Published studies have shown that large-scale redistribution of north Pacific fish populations may occur under future climate scenarios, with the potential for large impacts on ecosystem structure and function \citep{jc14, cheung15}. Groundfish indicator species most likely to be affected by environmental change will be identified in this project.  Finally, ecosystem-based fishery management is based on principles of understanding the structure and function of the living components of marine ecosystems. In the US, NOAA is mandated to identify habitats essential for every managed fish species and identify those habitats that contribute most to survival, growth and productivity \citep{sig12}. The analyses in this project will form an important component of this understanding for central and northern BC waters. Through partnership with our external collaborator, comparative analyses will test generality of results and identify differences between BC and Alaska.
+
+\bigskip
+
+\section{METHODS}
+\subsection{Groundfish Bottom Trawl Survey}
+Groundfish bottom trawl survey data for our analyses were  collected during the DFO's biennial Hecate Strait Synoptic Trawl Survey and the Queen Charlotte Sound Synoptic Trawl Survey between 1984 and 2015. 
+Tows began at pre-determined locations as part of a random, stratified sampling design with strata based on (?????). Fish were identified to species, lengths measured, sexed (0 = unknown, 1 = male, 2 = female, 3 = ?), and characterised by maturity (categories 1 to 7) according to a prioritized sampling protocol. A sub-sample of each fish species from every tow were grouped by species and weighed to the nearest kilogram (kg). Tow length and travel speed were also recorded. The data used these analyses are therefore the biomass of each species in each tow, and in some cases, standardised as catch per unit of trawl effort (catch per square kilometre). 
+
+\subsection{Environmental Data}
+\subsubsection{Survey Data}
+
+Highly spatially-resolved, commercial logbook data were available from BC's 100\%-observed groundfish bottom trawl fishery. All these data are held in Oracle databases, co-managed by the Pacific Groundfish Statistics Program. During the groundfish bottom trawl survey average net depth (m) and average ocean temperature ($^\circ$C) data were also collected from sensors attached to the net. Spatial bottom-type data at 100 m and 20 m resolution were available at the Pacific Biological Station. Scientists at NOAA's Alaska Fisheries Science Center are currently engaged in developing distribution maps for all commercially-fished species in Alaska. Some of these data were available, via our external collaborator Dr. Rooper at the Alaska Fisheries Science Center.
+
+\subsubsection{ROMS Data}
+ROMS is a terrain following equation model that has been used extensively globally \citep{haid08}. The use of the model for the BC coast is forced by the North American Regional Reanalysis (NARR) \citep{narr04} atmospheric data, and lateral boundary conditions are extracted from the Simple Ocean Data Assimilation project, or SODA \citep{cart08}. At the open boundaries tidal forcing is applied using the output from a North-East Pacific tidal model \citep{fore00}. Furthermore, the model is forced by monthly fresh water discharge from major BC rivers, derived as in \citet{morr12}. Further details pertaining to the model, as well as an extensive model validation, can be found in \citet{mf12}.
+
+The model was used to estimate the spatial and temporal variability of the salinity and temperature in the ocean off the British Columbia coast. ROMS was used to hindcast the period of 1979 to 2011 and the model domain extends from the Columbia River to the Alaska Panhandle.   The horizontal grid resolution is 3 km, with 60 levels in the vertical available; however, only the deepest level was used for this study. The data used in this study are the average summer (June to August???) bottom temperature and salinity for each year.
+
+ROMS bottom temperature data were highly related to bottom trawl survey average net temperature R$^2$ $=$ 0.84. (can unhardwire once I'm sourcing our R code and value is in global environment)
+
+\subsubsection{BCMCA Data}
+Substrate type (e.g., hard, sandy, muddy and undefined) and ocean depth for the study area was obtained from the \bc\ Marine Conservation Analysis database. Substrate data was then gridded in 3 km cells with PBSMapping R script to convert the data to a usable format for our analyses.
+
+\subsection{Software}
+A version of the hierarchical Bayesian model has already been written using the OpenBUGS programming language. This code was customized and refined for this project. All other statistical models and graphic outputs were developed using the R-programming language. Species abundance and data distribution maps were made using ArcGIS or a similar (e.g., QGIS, PBSMapping).
+
+\subsection{Data Management}
+Spatially-gridded Canadian datasets and gridded predictions of distribution and abundance were transferred to a database managed by the Pacific Groundfish Statistics program. They were available internally to Pacific stock assessment scientists, and by request externally. Maps were incorporated into an intranet-based tool, making them available to Pacific scientists and managers.
+
+\subsection{Cumulative Distribution Functions}
+The purpose of this component of the study was to identify significant associations between environmental parameters and the distributions of 20 species of northeast Pacific Ocean groundfish. It was also meant to be a continuation of the analysis presented by \citet{psf94}. We used cumulative distribution functions (cdf's) of fish catch (CPUE) and the  environmental factors described above (substrate, salinity, temperature and depth) \citep{ps94, psf94}. This technique calculates the empirical cdf's for the environmental parameters alone and the environmental parameters weighted by the CPUE of a particular species \citep{ps94, psf94}. 
+
+The probability associated with each observation in a cdf is 1/\emph{n}, but the stratified random survey design results in a probability of 1/$n_{h}$ within each stratum (all symbols are provided in Table XX). Therefore the cdf for a given habitat variable ($x_{i}$) is of the form \citep{cd86}:
+
+\begin{equation}
+\label{eq:cdf1}
+\emph{f}(t) = \sum_{h}\sum_{i}\frac{W_h}{n_h}~I({x_{hi}}) %within align you need brackets around subscripts, for equation you do not
+\end{equation}
+
+with the indicator function
+
+\begin{equation*}  %the * removes the numbering
+{I}~({x_{hi}})=\begin{cases}
+1,& \text{if $x_{hi}$}\leq t;\\    %try \displaystyle to fix this
+0,& \text{otherwise}.
+\end{cases}
+\end{equation*}
+
+Where \emph{t} represents an index, ranging from the lowest to the highest values of the habitat parameter at a step appropriate for the desired resolution. Equation 1 is calculated over all values of \emph{t} for each habitat measurement ($x_{hi}$) available. The cdf's derived from equation \ref{eq:cdf1} can be used to determine the proportion of the environmental-weighted catch within any range of the environmental variable during the survey. For example, the range of depths that occurred within the central 50\% (between the 25th and 75th percentiles) or the central 95\% (between the 2.5th and 97.5th percentiles) of the area surveyed can easily be calculated from each species' cdf figures.
+
+Copied directly from Perry and Smith 1994. Including the survey stratification scheme via the $W_h$/$n_h$ terms ensures that we have an unbiased estimate of the frequency distribution for the habitat measurement. Ignoring the stratification by replacing $W_h$/$n_h$ with 1/\emph{n} would result in either under- or overestimating the area associated with any particular value of the habitat measurement. However, the term  $W_h$/$n_h$ does simplify to 1/\emph{n}  when the number of sets allocated to each stratum is proportional to the size of the stratum (i.e., $n_h$ = $nW_h$). That is, stratification can be ignored when the allocation of sets is strictly proportional to the stratum size.
+Next, we associate the catch of fish (in weight) of a particular species in each tow with the habitat parameters during that tow as  weight in the form:
+
+\begin{align} \label{eq:cdf2}
+g(t) = \sum_{h}\sum_{i}\frac{W_h}{n_h}\frac{y_{hi}}{y_{st}}~I({x_{hi}}). %within align you need brackets around subscripts, for equations you do not.
+\end{align}
+
+Scaling the number of fish caught (\emph{$Y_{hi}$}) by the stratified mean number of fish caught $(\overline{y}_{st})$ in equation \ref{eq:cdf2} results in \emph{g(t)} summing to 1 over all values of \emph{t}. If large values of (\emph{$Y_{hi}$})/$\overline{y}_{st}$ are consistently associated with particular habitat conditions, then this suggests a strong association between the fish species and those habitat conditions. The cumulative distribution functions calculated from equation \ref{eq:cdf2} illustrate the range of conditions at which the species occurred and can be compared with the habitat conditions available in the sampled area as calculated with equation \ref{eq:cdf1}. For example, 50\% of the depths surveyed in ..... (curve \emph{f(t)}, Fig. XX) were less than XX m, while 50\% of the XX \fishnameARF\ (curve \emph{g(t)}, Fig. XX) were caught at depths less than XX m. The curve \emph{g(t)} can differ widely from the habitat curve \emph{f(t)} depending on the range of conditions occupied by the fish. At one extreme, if the fish were associated with one depth only (e.g., 100 m), \emph{g(t)} would be zero for \emph{t} < 100 and equal to 1.0 for t $\geq$ 100. If there was no particular association between fish distributions and the habitat variable within the area surveyed, for example if the fish were randomly distributed with respect to the habitat variable, then \emph{g(t)} and \emph{f(t)} would be almost identical.
+
+The third step is to determine the strength of the association between catch and the habitat variable by assessing the degree of difference between the the two curves, \emph{g(t)} and \emph{f(t)}. Our test statistic's similar to that used for comparing empirical cdf's in Kolmogorov-Smirnov tests (see Conover 1980). We calculate the maximum absolute vertical distance between \emph{g(t)} and \emph{f(t)} as:
+
+\begin{equation} \label{eq:cdf3}
+\max\limits_{\forall t} \vert g(t) - f(t)\vert = \max\limits_{\forall t} \bigg|  \sum_{h}\sum_{i} \frac{W_h}{n_h} \bigg( \frac{{y_{hi}}-\overline{y}_{st}}{{\overline{y}_{st}}} \bigg) ~I({x_{hi}}) \bigg|
+%  \
+%_st}  
+\end{equation}
+
+where |\emph{g(t) - f(t)}| indicates the absolute value of the difference between \emph{g(t)} and \emph{f(t)} at any point \emph{t}.
+The stratified random survey design complicates the distributional assumptions for the test statistic in equation \ref{eq:cdf3}, and therefore the standard tables for the Kolmogorov-Smirnov test, or indeed any goodness-of-fit test, cannot be used (see Rao and Thomas 1989). Instead, we developed a randomization procedure (Noreen 1989) to evaluate the significance of the test statistics. We modelled the distribution of the test statistic under the null hypothesis of random association between fish catch (numbers) and habitat variable through Monte-Carlo sampling. This was done by randomizing the pairings of ($W_h/n_h$)[($y_{hi}$ - $\overline{y}_{st}$)/$\overline{y}_{st}$] and $x_{hi}$ over all \emph{h} and \emph{i} for the data within a survey and then calculating the test statistic in equation \ref{eq:cdf3} for the new pairs. The $x_{hi}$ for the pairings were obtained by sampling with replacement the observed $x_{hi}$ with probability $W_h$$n_h$. This procedure was repeated a large number of times to give a pseudo-population of test statistics under the null hypothesis. The test statistic for XX species and depth in MONTH YEAR (Fig XX) was equal to XX (also indicated as "max" in Fig XX) which was greater than or equal to XX\% (2000 out of 2001) of the test statistics in a randomized distribution.. There were 2001 test statistics when the original observed pairing of the data was included. Interpreting these results similar to a standard statistical hypothesis test, we note that the probability of obtaining a test statistic as large as XX by chance is close to zero (\emph{p} = XX) and conclude that there was a very strong association by XX species with a specific range of depths available in the survey area during MONTH YEAR. This randomization test is a two-sided test, since it is the magnitudes of the absolute differences between \emph{g(t)} and \emph{f(t)} that are of interest.
+However, environmental conditions are often correlated, for example where temperature decreases with increasing depth, which suggests that an association between a species and a particular depth range may also be confounded by an associated with temperature. This problem can be explicitly considered by extending equations \ref{eq:cdf2} and \ref{eq:cdf3} to two (or more) habitat variables simultaneously. For \emph{k} variables, equations \ref{eq:cdf1} and \ref{eq:cdf2} can be written as
+
+\begin{equation}
+\label{eq:cdf4}
+\emph{f}(t) = \sum_{h}\sum_{i}\frac{W_h}{n_h}~I({x_{hi}}) %within align you need brackets around subscripts, for equation you do not
+\end{equation}
+
+\begin{align}
+g(t) = \sum_{h}\sum_{i}\frac{W_h}{n_h}\frac{y_{hi}}{y_{st}}~I({x_{hi}}) %within align you need brackets around subscripts, for equations you do not.
+\end{align}
+
+where
+
+\begin{equation*}  %the * removes the numbering
+{I}~({x_{hi}})=\begin{cases}
+1,& \text{if ($x_{hi}$}\leq t_{1},x_{hi~2} \leq t_2,...,x_{hi~k} \leq t_{k});\\    %try \displaystyle to fix this
+0,& \text{otherwise}.
+\end{cases}
+\end{equation*}
+
+Boldface type text for $\boldsymbol{t}$ and $\boldsymbol{x}$ indicates vectors of habitat variables. In the two-variable case, \emph{g(\textbf{t}}) can be represented as a three-dimensional surface in which the cumulative frequency forms the vertical axis. The test statistic (equation \ref{eq:cdf3}) is modified as
+
+\begin{equation} \label{eq:cdf5}
+\max\limits_{\forall t} \vert g(\boldsymbol{t}) - f(\boldsymbol{t})\vert = \max\limits_{\forall t} \bigg|  \sum_{h}\sum_{i} \frac{W_h}{n_h} \bigg( \frac{{y_{hi}}-\overline{y}_{st}}{{\overline{y}_{st}}} \bigg) ~I(\boldsymbol{x}_{hi}) \bigg|.
+%  \
+%_st}  
+\end{equation}
+
+\subsection{Models}
+The project will apply a mix of established and recently-published statistical approaches to achieve the deliverables of the project. An earlier study \citep{psf94} applied a set of multivariate statistical models to classify groundfish species in Hecate Strait according to their relationships with invariant and variable environmental factors. Recent studies have further developed these types of approaches for Alaskan groundfish species (e.g., \citet{roop05,roop08}). A problem with spatial datasets for many marine species is the high proportion of zero observations, which can bias results. One approach to solving this problem is to use a two-stage model to first predict presence and absence, then analyse relationships between environmental variables and abundance \citep{rm09}. More recently, the problem has been addressed using new Bayesian hierarchical models which estimates both the probability of zero observations and abundance in a hierarchical framework \citep{lec13, lec13b}. Within this framework, a geostatistical approximation, consisting of a linear model with spatially-correlated errors, is used to efficiently predict spatial abundance as a function of environmental factors \citep{lec13b}. The model outputs spatial predictions of abundance, and predictive probability distributions of the effects of each environmental factor on abundance for each species. 
+Models are calibrated with spatial abundance observations. Analyses can be done on different size-classes of the population to better understand differences in adult and juvenile distribution and improve understanding of productivity. 
+
+ 
+
+%%Open the file \rnwexamplefile. Look at the first R code chunk, starting on line 191. This is where the R environment is loaded so that the figures and tables can be made, and values can be referenced later in the document. There are two choices: source the R file, or load a binary R environment. Sourcing the file works fine, but if there is a lot of loading of data or calculations that have to happen during the sourcing the build will take a long time. A much quicker way is to open an R session, and source the \rfile\ manually, then save the R environment to a file called \rdata\ in the \emph{r} directory. If this method is used, make sure to set \textbf{\lstinline{use.binary.envir <- TRUE}} on line 209 of \rnwexamplefile.
+
+%To build this document, open a command line and enter \textbf{buildtex.bat}. When you run buildtex.bat two things happen:
+%\begin{enumerate}[noitemsep,nolistsep]
+%  \item Rscript calls knitr which goes through and \emph{knits} your \emph{\rnwexamplefile} file, which means it runs all the R code it finds, stores figures in the \emph{knitr-cache} directory, and creates a \tex file which \latex can then understand. It also creates a file called knitrOutput.log which contains all output and errors encountered during the knitting procedure. That is where to first look when there are problems compiling your document. Here is the line in buildtex.bat that does this:
+ %% alltt allows us to enter code with a bunch of special characters without having to escape all of them explicitly.
+%    \begin{alltt}
+%      Rscript -e "library(knitr);knit('./\rnwexamplefile')" 1> knitrOutput.log 2>&1
+%    \end{alltt}
+%  \item \latex runs through the newly-created \tex file (\emph{\texfile}) and calls \emph{bibtex} to find the references and make the bibliography. There are three output formats of the document: .ps, .dvi, and .pdf. The .ps and .dvi formats require special viewers (Yap and GhostView respectively) and do not incorporate the reference links that are so convinient in the .pdf file. During development of very complex documents, you can leave the last part of this call out to avoid PDF generation, and put it back in when ready to complete the document.
+%    \begin{alltt}
+%      @latex -synctex=1 "\texfile" && bibtex "example" && latex "\texfile"
+%        && latex "\texfile" && dvips "example.dvi" && ps2pdf "example.ps"
+%    \end{alltt}
+%\end{enumerate}
+
+%Some \latex packages may have to be installed. If so, the package manager dialog will open. You must choose to install from internet, then make sure to select \emph{ctan} using \emph{HTTP} protocol from \emph{BC}. The default settings will most likely not work.
+
+%When \emph{knitr} is called, it parses the \emph{\rnwexamplefile} file, looking for special parenthesis characters which are called \emph{R code chunks}. The chunks begin with a set of parentheses and equals sign \verb!<< >>=! and end with the \emph{at} symbol \verb!@!. Anything between them is an R code chunk which will be evaluated by \emph{knitr}. Inside the beginning parentheses, you can define many \emph{chunk options}. The official page listing these options is here: \href{http://yihui.name/knitr/options/}{Knitr chunk options}. In this document the file \emph{\rnwexamplefile} holds one chunk which loads the R environment, and \emph{\rnwmaindocfile} holds the figure chunks (one for each figure) which each hold simple commands to plot some examples. For example, figure \ref{fig:example-half-torus} is called like this:
+
+%% Outputs the chunk as code into the document by using eval=FALSE and literal=TRUE
+%\verb!<<fig.height=9, fig.width=8>>=! \\
+%\verb!half.torus()! \\
+%\verb!@!
+
+%One should always write calculated values or data by using a reference to the R objects instead of typing the numbers in as text. This way, if something changes you don't have to read and verify every number in your document, they will be updated automatically by \emph{knitr}.
+
+%Here's how you write some values by reference from your R environment inside \latex text block: For example to get the mean of x you would use the command: \$\ShowSexpr{mean(x)}\$ which in this case evaluates to $mean(x)$. The \verb!$\Sexpr{}$! construct represents an S-expression, where S was the predecessor to R. For some reason it hasn't yet been changed to \verb!$\Rexpr{}$!. In this example, the values for the x vector were read in from \emph{example.r} at the beginning of the knitting process and is accessible throughout the document. You can call simple R commands using the \verb!$\Sexpr{}$! command inside \latex. You can do more than one command by separating with a semicolon, for example the command \$\ShowSexpr{z=x+y;mean(z)}\$ evaluates to $z=x+y;mean(z)$ for the x and y values loaded from \emph{example.r}.\\
+
+\bigskip
+
+\section{RESULTS}
+
+\subsection{Environmental Covariates} \label{sec:enviro.covar}
+
+Environmental covariates considered during this analysis included average trawl net depth, and bottom temperature and salinity. Trawl net depth was recorded during each tow. Temperature and salinity data were collected during the groundfish trawl surveys and were also available from the Regional Oceanographic Model System (ROMS).
+
+\subsection{Cumulative Distribution Functions}
+\subsubsection{Survey Data}
+The relationships varied between environmental factors considered in this study (temperature, salinity and depth) and the twenty species of groundfish. For a better understanding of how to intepret the cumulative distribution results, we provide examples using \fishnameROL\  and \fishnameLST\ results. \fishnameROL\ were most abundant at high temperatures with 50\% of their biomass occurring at temperatures greater than 9.1$^\circ$C and depths greater than 40.5 m (refer to figure). Fifty perent  of \fishnameLST\ occurred at temperatures cooler than 4.9$^\circ$C and depths greater than 470 m. These examples are in opposite ends of the spectrum with respect to habitat use within the study area and therefore their catch weight cdf's were much different than the cdf's for both environmental variables (i.e., the distribution of available temperatures and depths within the survey area).
+
+For comparative purposes between this study and \citet{psf94} we present the results of \fishnameARF\ and \fishnameDOG\ for depth and survey temperature. With respect to depth, \citet{psf94} found that 25\% of the \fishnameARF\ biomass occurred at depths shallower than 84 m, 50\% occurred shallower than 100 m, and 75\% occurred shallower than 120 m. Our study found a different distribution with 25\% of the biomass shallower than 112 m, 50\% shallower than 140.5 m and 75\% shallower than 169.5 m (ref to figure). Twenty-five percent of \fishnameDOG\ in \citet{psf94} were at depths less than 33 m, 50\% at less than 50 m and 75\% at less than 93 m. Similarly, our study found that 25\% of the biomass was at depths less than 51 m, 50\% less than 52.5 m and 75\% less than 109 m (ref to figure).
+
+For survey temperature, \citet{psf94} found that 25\% of the \fishnameARF\ biomass occurred at temperatures less than 6.1$^\circ$C, 50\% at less than 6.5$^\circ$C, and 75\% at less than 6.7$^\circ$C. Our results were similar with 25\% of \fishnameARF\ in our study occurring at temperatures less than 5.9$^\circ$C, 50\% at less than 6.1$^\circ$C and 75\% at less than 6.5$^\circ$C. Again, \fishnameDOG\  cdf's were similar between studies. Twenty-five percent of \fishnameDOG\ in the previous study were found at temperatures less than 6.6$^\circ$C, 50\% at less than 6.8$^\circ$C and 75\% at less than 9.6$^\circ$C. Finally, in this study 25\% of \fishnameDOG\ occurred at temperatures less than 6.8$^\circ$C, 50\% at less than 8.8$^\circ$C and 75\% at less than 10.1$^\circ$C. This is a considerably larger temperature range that is utilised by this species relative to \fishnameARF\ . 
+
+The randomization test (\ref{eq:cdf3})for determining significant differences from random distributions of the environmental variables indicated that \fishnameARF\ were (or were not) significantly different from the available depths or temperatures. \fishnameDOG\ had (or did not have) a similar result. Refer to table XX for a summary of significant differences from random distributions.
+
+The only species that did not show significant differences from random distributions of the environmental variables were.... (see Table Xx??)
+
+In general, due to the confounding relationships among temperature, salinity and depth, species that were most abundant at low temperature were also most abundant at high salinity and deeper depths. For example, 50\% of \fishnameSST\ were in temperatures less than 5.5 $^\circ$C, salinities greater than 38.2 PSU and depths greater than 290 m. 
+
+\subsection{ROMS Data}
+Cumulative distribution functions of catch weight were also calculated based on ROMS depth, temperature and salinity data. Catch-weighted depth for \fishnameARF\ was at 59 m for 2.5\% of the biomass, 25\% at less than 108 m, 50\% at less than 138 m, 75\% at les than 164 m and 97.5\% at less than 288 m. These catch-weighted depths were all similar (approximately $\pm$ 5 m) except for the 2.5th percentile which was 13 m deeper for the survey temperature. The catch-weighted depth percentiles for \fishnameDOG\ were very similar between the two data types with all being witin $\pm$ 10 m of each other. 
+
+With respect to temperature-weighted catch, the 2.5th percentile for \fishnameARF\ was at 5.6$^\circ$C, 25\% of the biomass was colder than 6.5$^\circ$C, 50\% at less than 7.0$^\circ$C, 75\% at less than 7.8$^\circ$C and 95\% at less than 9.6$^\circ$C. This represents a wider temperature range (4.0$^\circ$C) for 95\% of the biomass than the survey data (2.6$^\circ$C); however, the the middle 50\% of the ROMS biomass occurred within 1.3$^\circ$C (6.5$^\circ$C to 7.8$^\circ$C), which was smaller than the 1.6$^\circ$C temperature range for the survey data (5.9$^\circ$C to 6.5$^\circ$C). \fishnameDOG\ had a similar temperature range between data types, 6.6$^\circ$C for ROMS compared to 7.1$^\circ$C for survey data. In contrast to \fishnameARF\@,the middle 50\% of the biomass occurred in a narrower range of temperatures for ROMS data (7.7$^\circ$C to 9.7$^\circ$C) relative to survey data (6.8$^\circ$C to 10.1$^\circ$C). For both data types, 95\% of the biomass was colder than 12.5$^\circ$C.  
+
+The are no salinity-weighted catch percentiles to compare between data types or with \citet{psf94}; however, the 2.5th percentile for \fishnameARF\ was for ROMS salinity was less than 34 PSU. The 25th percentile of biomass was for salinity less than 35.5 PSU, 50\% at less than 36.4 PSU, 75\% at less than 37.1 PSU and 97.5\% at less tahn 38.2 PSU. \fishnameDOG\ was similar with a 95th percentile range of from 33.9 to 37.7 PSU. The 25th percentile was for salinities less than 34.3 PSU, 50\% at less than 34.3 PSU and 75\% at salinities less than 35.6 PSU. 
+
+The randomization test (\ref{eq:cdf3})for determining significant differences from random distributions of the ROMS environmental variables indicated that \fishnameARF\ were (or were not) significantly different from the available depths, temperatures and salinities. \fishnameDOG\ had (or did not have) a similar result. Refer to table XX for a summary of significant differences from random distributions.
+
+The only species that did not show significant differences from random distributions of the ROMS environmental variables were.... (see Table Xx??)
+
+\bigskip
+\section{HOW REFERENCES WORK} \label{sec:how.refs.work}
+
+\subsection{How the figure and table references work} \label{subsec:how.figure.refs.work}
+
+A figure/table reference works by adding a reference name to a figure/table, then remembering what is was and using a \verb!\ref! command to reference the figure/table. For example in Figure \ref{fig:example-random-stuff}, the figure reference code has a label tag like this \verb!\label{fig:example-random-stuff}!. The figure can be referenced anywhere in the latex document by using this syntax: \verb!\ref{fig:example-random-stuff}!. The numbering is taken care of for you and is separate for each type of reference. Here is a list of suggested prefixes to use for different reference types:
+
+\begin{enumerate}[noitemsep,nolistsep]
+  \item    \textbf{sec}: - section
+  \item \textbf{subsec}: - subsection
+  \item    \textbf{fig}: - figure
+  \item    \textbf{tab}: - table
+  \item     \textbf{eq}: - equation
+  \item    \textbf{lst}: - code listing
+  \item    \textbf{itm}: - enumerated list item (like this list)
+  \item   \textbf{chap}: - appendix
+\end{enumerate}
+
+\subsection{How appendix references work} \label{subsec:how.appendix.refs.work}
+
+Appendix references are much like chapters of a book. They can be added or commented out easily at the bottom of \emph{\rnwexamplefile}. This helps with the incremental form of development where you make sure the main document is compiling and then when ready, uncomment the appendix inclusion code and the appendix will be included in the document. Once included, any appendix references will be resolved.
+
+The code which adds an appendix is \emph{knitr} code because you want the appendix added before the knitting process so that any figures or R expressions are resolved, just like in the main document. This is an example of how appendix code is added:
+
+\verb!\rfoot{Appendix A -- Species Summaries}!
+
+\verb!<<appendix-A, child='appendix-A/appendix-A.Rnw'>>=! \\
+\verb!@!
+
+ To reference this appendix, use this syntax: \verb!\ref{chap:example.1}! which resolves to appendix \ref{chap:example.1}. This is also clickable and will take you directly to the appendix. The reference must be defined at the beginning of \emph{\rnwappendixAfile} like this: \verb!\label{chap:example.1}!. This method is repeated for all appendices. They will be lettered in the order in which they appear in \rnwexamplefile, so it is very easy to change the order of appendices and rebuild the document.
+ 
+\bigskip
+
+
+\section{SUMMARY}
+
+Here's a reference to an appendix: % \ref{chap:propfemale} and \ref{chap:agecompweight}.\\
+
+\addcontentsline{toc}{section}{BIBLIOGRAPHY}
+
+\bibliographystyle{resDoc}
+%% This tells latex that the bibliography file is two directories up and is called all.bib
+\bibliography{../../all}
+
+\clearpage
+
+\section{TABLES}
+
+%% The big [H] below tells latex to keep the table/figure here in this spot when using the float package
+%% If it wasn't there, figures and tables would be mixed together due to latex's auto-placement algorithms
+\begin{table}[H]
+\centering
+\caption{\label{tab:cdfdefs}Definitions of quantities associated with trawl survey calculations (Cochran 1977, p.89-92; Smith 1988) and equations in text.}
+\begin{tabular}{p{1.5cm}p{14.5cm}} %{ll}  %justifies both columns to their left hand side
+\hline
+\hline
+$n_h~$ $=$ & number of hauls or sets in stratum $h$~($h$ = 1, ...,$L$)\\
+\\
+$n~~~$   $=$ & $\sum_{h=1} ^L n_h$ (in the stratified case), total number of hauls\\
+\\
+$N_h~$ $=$ & total number of possible sets in stratum $h$\\
+\\
+$N~~$ $=$ & $\sum_{h=1} ^L N_h$, total number of possible sets overall\\
+ \\
+$W_h$ $=$ & $N_h$/$N$, proportion of the survey area in stratum $h$\\
+\\
+$y_{hi}~$ $=$ & number of fish of a particular species caught in set $i$ ($i$ = 1, ...,$n_h$) and stratum $h$;$y_i$ is the same quantity but for the random (nonstratified) survey design\\
+\\
+$\overline{y}_{h}~~$ $=$ & estimated mean abundance of a particular species of fish in stratum $h$; $\overline{y}$ is the same quantity but for the random (nonstratified survey design)\\
+\\
+$\overline{y}_{st}~ =$ & $\sum_{h=1}^L W_h \overline{y}_{h}$, estimated stratified mean abundance for a particular species of fish\\
+\\
+$x_{hi}~ =$ & measurement for a hydrographic variable in set $i$ of stratum $h$; $x_{hij}$ indexes the measurement for hydrographic variable $j$ in set $i$ of stratum $h$ when more than one hydrographic variable is considered simultaneously\\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+%%%CDF Quantile table
+% latex table generated in R 3.2.2 by xtable 1.8-2 package
+% Thu Mar 10 14:45:07 2016
+\begin{table}[tbp]
+\centering
+\caption{Cumulative distribution function quantiles for survey temperature-weighted catch.} 
+\label{default}
+\begingroup\fontsize{9}{10}\selectfont
+\begin{tabular}{lrrrrr}
+  & \multicolumn{5}{c}{\textbf{Quantile}} \\  \hline
+   & \textbf{2.5\%} & \textbf{25\%} & \textbf{50\%} & \textbf{75\%} & \textbf{97.5\%} \\  \hline
+\textbf{Temperature} &  4.93 &  5.63 &  6.13 &  6.93 & 10.53 \\ 
+  \textbf{Arrowtooth Flounder} &  5.03 &  5.93 &  6.13 &  6.53 &  7.63 \\ 
+  \textbf{Bocaccio Rockfish} &  5.23 &  5.93 &  6.13 &  6.43 &  7.63 \\ 
+  \textbf{Canary Rockfish} &  5.63 &  6.03 &  6.33 &  6.73 &  7.53 \\ 
+  \textbf{Spiny Dogfish} &  5.43 &  6.83 &  8.83 & 10.13 & 12.53 \\ 
+  \textbf{Dover Sole} &  4.93 &  5.63 &  5.93 &  6.13 &  7.23 \\ 
+  \textbf{English Sole} &  5.83 &  6.53 &  7.13 &  8.23 & 11.43 \\ 
+  \textbf{Greenstripe Rockfish} &  5.43 &  5.83 &  6.03 &  6.23 &  6.83 \\ 
+  \textbf{Longspine Thornyhead} &  4.33 &  4.63 &  4.93 &  5.03 &  5.23 \\ 
+  \textbf{Pacific Cod} &  5.43 &  6.13 &  6.53 &  7.53 & 10.63 \\ 
+  \textbf{Petrale Sole} &  5.33 &  6.23 &  6.83 &  7.33 &  8.73 \\ 
+  \textbf{Pacific Ocean Perch} &  4.83 &  5.33 &  5.53 &  5.83 &  6.23 \\ 
+  \textbf{Ratfish} &  5.63 &  6.23 &  7.13 &  8.73 & 11.33 \\ 
+  \textbf{Rock Sole} &  6.53 &  7.93 &  9.03 & 10.23 & 12.93 \\ 
+  \textbf{Redstripe Rockfish} &  5.23 &  5.83 &  6.13 &  6.33 &  7.53 \\ 
+  \textbf{Rex Sole} &  5.13 &  5.83 &  6.23 &  6.73 &  7.93 \\ 
+  \textbf{Sablefish} &  4.63 &  5.23 &  5.83 &  6.43 &  8.33 \\ 
+  \textbf{Silvergrey Rockfish} &  5.13 &  5.53 &  5.93 &  6.23 &  6.93 \\ 
+  \textbf{Shortspine Thornyhead} &  4.53 &  5.03 &  5.33 &  5.63 &  6.03 \\ 
+  \textbf{Widow Rockfish} &  5.43 &  5.73 &  6.33 &  7.13 &  8.83 \\ 
+  \textbf{Yellowmouth Rockfish} &  5.13 &  5.53 &  5.73 &  6.03 &  6.33 \\ 
+   \hline
+\end{tabular}
+\endgroup
+\end{table}
+
+ 
+%% How you call an xtable from latex. Note there is no need for anything other than
+%% the R call to make.xtable. The label can be referenced elsewhere in the document.
+
+% latex table generated in R 3.2.2 by xtable 1.8-2 package
+% Thu Mar 10 14:45:07 2016
+\begin{table}[ht]
+\centering
+\caption{Example using xtable with some pseudo-random seeded numbers. The function get.align makes the left column justified left and the rest justified right which is how most tables giving values are shown.} 
+\label{tab:example-xtable}
+\begin{tabular}{lrrrrrr}
+  \hline
+\textbf{ID} & $R_{s=1}$ & $R_{s=2}$ & $R_{s=3}$ & $R_{s=4}$ & $\overline{R}$ & $\sigma$ \\ 
+  \hline
+  1 & 19.56 & 15.11 & 18.43 & 1.09 & 13.55 & 8.52 \\ 
+    2 & 2.63 & 14.49 & 12.90 & 16.82 & 11.71 & 6.26 \\ 
+    3 & 19.54 & 12.88 & 8.27 & 1.65 & 10.59 & 7.54 \\ 
+    4 & 2.00 & 7.83 & 15.02 & 12.43 & 9.32 & 5.72 \\ 
+    5 & 14.37 & 2.22 & 4.06 & 14.94 & 8.90 & 6.70 \\ 
+    6 & 4.97 & 4.50 & 11.41 & 17.99 & 9.72 & 6.35 \\ 
+    7 & 10.67 & 16.40 & 2.16 & 17.77 & 11.75 & 7.10 \\ 
+    8 & 3.97 & 15.28 & 3.83 & 6.93 & 7.50 & 5.38 \\ 
+    9 & 14.11 & 2.63 & 1.99 & 2.66 & 5.35 & 5.85 \\ 
+   10 & 7.24 & 16.63 & 11.03 & 6.77 & 10.42 & 4.56 \\ 
+   11 & 9.65 & 11.02 & 14.15 & 4.09 & 9.73 & 4.20 \\ 
+   12 & 5.60 & 14.69 & 18.49 & 12.08 & 12.72 & 5.43 \\ 
+   13 & 19.37 & 14.96 & 3.11 & 8.09 & 11.38 & 7.21 \\ 
+   14 & 3.09 & 3.06 & 14.50 & 8.60 & 7.31 & 5.45 \\ 
+   15 & 6.30 & 12.32 & 18.37 & 9.38 & 11.59 & 5.14 \\ 
+   16 & 8.81 & 16.03 & 8.28 & 14.20 & 11.83 & 3.87 \\ 
+   17 & 9.17 & 11.69 & 4.64 & 16.03 & 10.38 & 4.76 \\ 
+   18 & 4.83 & 18.61 & 7.07 & 2.08 & 8.15 & 7.27 \\ 
+   19 & 12.64 & 1.01 & 6.02 & 1.14 & 5.20 & 5.48 \\ 
+   20 & 13.61 & 10.84 & 1.68 & 19.64 & 11.44 & 7.47 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+
+%\textbf{Parameter} & \specialcell{\textbf{Number}\\\textbf{estimated}} & \specialcell{\textbf{Bounds}\\\textbf{[low,high]}} & \specialcell{\textbf{Prior (Mean, SD)}\\\textbf{(single value=fixed)}} \\
+\newpage
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:annmeansSD}\fishnameARF\ mean lengths (mm), maturity, sex and total sample weight (kg) ${\pm}$ standard deviation (SD) from 1984 to 2015.}
+\begin{tabular}{lrrrrrrrr}%%lrr puts first column left-justified and the next eight columns right-justified
+\hline
+\textbf{Survey Year} & \textbf{$\overline{L}$} & \textbf{SD} & \textbf{$\overline{S}$} & \textbf{SD} & \textbf{$\overline{M}$} & \textbf{SD} & \textbf{$\overline{TotWt}_s$} & \textbf{SD}\\ 
+\hline
+1984           & a                               & See Table \ref{tab:annmeansSD} \\
+1987             & a                      & $\vartheta^2=1.538$; $\rho=0.015$ \\
+1989             & a                       & $\vartheta^2$ estimated; $\rho=0.059$ \\
+1991             & a                        & $\vartheta^2=0.962$; $\rho=0.038$ \\
+1993             & a                       & $\vartheta^2=2.500$; $\rho=0.100$ \\
+1998             & a            & $h$ = Beta($\alpha=12.7$, $\beta=5.0$) \\
+2000             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.05$) \\
+2002             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.25$) \\
+2003           & a        & $\ln(M)$ = Normal($\ln(0.3)$, $0.20$) \\
+2004          & a         & $\ln(q_k)$ = Normal($\ln(1.0)$, $1.0$) \\
+2005          & a         & $\ln(q_k)$ = Normal($\ln(0.5)$, $1.5$) \\
+2007          & a            & $\hat{a}$ = $4.99$ yrs; $\hat{\gamma}$ = $1.27$ yrs \\
+2009          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+2011         & Aa              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+2013          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+2015         & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+\hline
+\end{tabular}
+\end{table}
+
+
+%\begin{table}[H]
+%\centering
+%\caption{\label{tab:meansSD}Fish species overall mean lengths (mm), maturity, sex and total sample weight (kg) ${\pm}$ standard deviation %(SD) for all surveys (1984 to 2015).}
+%\begin{tabular}{lrrrrrrrr}%%lrr puts first column left-justified and the next two columns right-justified
+%\hline
+%\textbf{Fish Species} & \textbf{$\overline{L}$} & \textbf{SD} & \textbf{$\overline{S}$} & \textbf{SD} & \textbf{$\overline{M}$} & \textbf{SD} & \textbf{$\overline{TotWt}_s$} & \textbf{SD} \\ 
+%\hline
+%\fishnameARF\           & a                               & See Table \ref{tab:meansSD} \\
+%\fishnameCAR\             & a                      & $\vartheta^2=1.538$; $\rho=0.015$ \\
+%\fishnameDOG\             & a                       & $\vartheta^2$ estimated; $\rho=0.059$ \\
+%\fishnameDOL\             & a                        & $\vartheta^2=0.962$; $\rho=0.038$ \\
+%\fishnameENL\             & a                       & $\vartheta^2=2.500$; $\rho=0.100$ \\
+%\fishnameGSR\             & a            & $h$ = Beta($\alpha=12.7$, $\beta=5.0$) \\
+%\fishnameLST\             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.05$) \\
+%\fishnamePAC\             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.25$) \\
+%\fishnamePEL\           & a  & $\ln(M)$ = Normal($\ln(0.3)$, $0.20$) \\
+%\fishnamePOP\          & a & $\ln(q_k)$ = Normal($\ln(1.0)$, $1.0$) \\
+%\fishnameRAT\          & a         & $\ln(q_k)$ = Normal($\ln(0.5)$, $1.5$) \\
+%\fishnameROL\          & a            & $\hat{a}$ = $4.99$ yrs; $\hat{\gamma}$ = $1.27$ yrs \\
+%\fishnameRSR\          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\fishnameRXL\          & Aa              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\fishnameSGR\          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\fishnameSST\          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\fishnameWWR\          & Aa              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\fishnameYMR\          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\hline
+%\end{tabular}
+%\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:sensitivities-q}Sensitivity cases for $q_k$; posterior quantiles.}
+\begin{tabular}{lcccccc}
+\hline
+\textbf{Index}  & \multicolumn{3}{c}{\textbf{Sensitivity 10}} & \multicolumn{3}{c}{\textbf{Sensitivity 11}} \\
+\hline
+ $\mathbf{q_k}$ & \textbf{2.5\%} & \textbf{50\%} & \textbf{97.5\%} & \textbf{2.5\%} & \textbf{50\%} & \textbf{97.5\%} \\
+\hline
+QCSSS  & 0.081 & 0.158 & 0.508 & 0.029 & 0.083 & 0.226 \\
+HSMAS  & 0.079 & 0.121 & 0.155 & 0.035 & 0.081 & 0.136 \\
+HSSS   & 0.070 & 0.118 & 0.200 & 0.027 & 0.067 & 0.136 \\
+WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
+\hline
+\end{tabular}
+\end{table}
+
+%% <<results='asis', echo=FALSE>>=
+%% # Note that the first column will not be set to have any decimal digits because it is the TAC/Catch projection
+%% cap <- "Decision Table for the Reference Case showing posterior probabilities that 2016 projected biomass B\\subscr{t} is below a set of candidate reference points and benchmarks (Table \\ref{tab:refpoints}), and probabilities that the 2015 projected harvest rate U\\subscr{t} is above U\\subscr{2014} or U\\subscr{MSY} for a given level of female-only catch."
+%% makeTable(1, 7, ci=ci, burnthin=burnthin, digits=3, retxtable=TRUE, xcaption=cap, xlabel="tab:Decisions")
+%% @
+%% <<results='asis', echo=FALSE>>=
+%% # Note that the first column will not be set to have any decimal digits because it is the TAC/Catch projection
+%% cap <- "Decision Table for a sensitivity model (Selectivity = Maturity, Table \\ref{tab:sensitivities}) showing posterior probabilities that 2016 projected biomass B\\subscr{t} is below a set of candidate reference points and benchmarks (Table \\ref{tab:refpoints}), and probabilities that the 2015 projected harvest rate U\\subscr{t} is above U\\subscr{2014} or U\\subscr{MSY} for a given level of female-only catch."
+%% makeTable(12, 7, ci=ci, burnthin=burnthin, digits=3, retxtable=TRUE, xcaption=cap, xlabel="tab:DecisionsSelMat")
+%% @
+
+\newpage
+
+
+\section{FIGURES}
+\subsection{Survey Data}
+
+%%%%%%%%% Survey DEPTH FIGURE
+\newpage
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
+\end{center}
+\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
+\label{fig:allsurveysdepth}
+\end{figure}
+
+\newpage
+%%%%%%%%% SUrvey temp panel FIGURE
+
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{SurveyTemp3km_gridded_Panel_1.eps}
+\end{center}
+\caption{Mean ocean temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from groundfish trawl surveys from 2003 to 2011.}
+\label{fig:survtemppanel}
+\end{figure}
+
+\newpage
+
+\subsection{BCMCA Data}
+%%%%%%%%% Survey DEPTH FIGURE
+%\newpage
+%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+%\begin{figure}[!htp]
+%\begin{center}
+%\includegraphics[width=6in,keepaspectratio=true]{FILENAME HERE.eps}
+%\end{center}
+%\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for based on BCMCA data.}
+%\label{fig:allsurveysdepth}
+%\end{figure}
+
+%\newpage
+
+\subsection{ROMS}
+
+
+%%%%%%%%% ROMS TEMP FIGURE - ALL YEARS
+
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_1.eps}
+\end{center}
+\vspace{0mm}
+\caption{Summer ROMS ocean bottom temperature ($^\circ$C) from 1979 to 2011.}
+\label{fig:roms.ann.temp}
+\end{figure} 
+
+%%%%%%%%% ROMS TEMP PANEL FIGURES       
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_1.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1979 to 1987.}
+\label{fig:ROMStemp79to87}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_2.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1988 to 1996.}
+\label{fig:ROMStemp88to96}
+\end{figure}   
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_3.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1997 to 2005. The grey dashed line is the 1:1 line.}
+\label{fig:ROMStemp97to05}
+\end{figure}   
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSTemp3km_gridded_Panel_4.eps}
+\end{center}
+
+\caption{ROMS mean bottom temperature ($^\circ$C) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
+\label{fig:ROMStemp06to11}
+\end{figure}
+
+\newpage
+
+%%%ROMS TEMP VERSUS SURVEY TEMP SCATTERPLOT
+
+\graphicspath{{c:/GitHub/SPERA-Maps/Results/Figures/}}
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMST_vs_SurvT.eps}
+\end{center}
+\caption{Relationship between ROMS and survey ocean bottom temperature ($^\circ$C) for 2003 to 2011.}
+\label{fig:ROMSsurvT}
+\end{figure}
+
+\newpage 
+
+%%%%%%%%% ROMS SALINITY PANEL FIGURES 
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_1.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1979 to 1987.}
+\label{fig:ROMSsal79to87}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_2.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1988 to 1996.}
+\label{fig:ROMSsal88to96}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_3.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 1997 to 2005.}
+\label{fig:ROMSsal97to05}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htp]
+\ContinuedFloat
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSalinity3km_gridded_Panel_4.eps}
+\end{center}
+
+\caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
+\label{fig:ROMSsal06to11}
+\end{figure}
+
+\newpage
+\clearpage
+
+\subsection{Cumulative Distribution Functions}
+
+%%% CDF BOX PLOTS FOR SURVEY DEPTH AND TEMPERATURE
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{cdf_Box_Depth.eps}
+    \caption[]
+      {{\small Plots of quartiles of available depth and groundfish species based on average survey depth (m).}}    
+    \label{fig:cdf.box.depth}
+        \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}  
+    \centering 
+    \includegraphics[width=\textwidth]{cdf_Box_Temperature.eps}
+    \caption[]%
+     {{\small Plots of quartiles of available temperature and groundfish species based on average survey temperature ($^\circ$C).}}    
+    \label{fig:cdf.box.temp}
+    \end{subfigure}
+    \caption[ ]
+     {\small Quartiles of available habitat and groundfish species based on ROMS 3 km gridded data. Whiskers extend to the 2.5th and 97.5th percentiles, the end of the boxes extend to the 25th and 75th percentiles, and the vertical black bar represents the median (50th percentile). Species are arranged in increasing order based on the value of their median.} 
+    \label{fig:cdf.box.survey}
+    \end{figure*}
+ 
+%%% CDF BOX PLOTS FOR ROMS DEPTH, TEMPERATURE and SALINITY
+%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+%\begin{figure*}
+%        \centering
+%        \begin{subfigure}[b]{0.475\textwidth}
+%            \centering
+%            \includegraphics[width=\textwidth]{cdf_Box_ROMStempBlocked.eps}
+%            \caption[]
+%            {{\small Plots of quartiles of available bottom temperature ($^\circ$C) and groundfish species based on ROMS temperature.}}    
+%            \label{fig:cdf.box.ROMStemp}
+%        \end{subfigure}
+%        \hfill
+%        \begin{subfigure}[b]{0.475\textwidth}  
+%            \centering 
+%            \includegraphics[width=\textwidth]{cdf_Box_ROMSsalinityBlocked.eps}
+%            \caption[]%
+%            {{\small Plots of quartiles of available salinity (PSU) and groundfish species based on ROMS salinity.}}    
+%           \label{fig:cdf.box.ROMSsalinity}
+%        \end{subfigure}
+%        \caption[ ]
+%        {\small Quartiles of available habitat and groundfish species based on ROMS 3 km gridded data. Whiskers extend to the 2.5th and 97.5th percentiles, the end of the boxes extend to the 25th and 75th percentiles, and the vertical black bar represents the median (50th percentile). Species are arranged in increasing order based on the value of their median.} 
+%        \label{fig:cdf.box.ROMS}
+%    \end{figure*}
+
+
+\clearpage
+
+\addtocontents{toc}{\par {\bf \vspace{10mm} APPENDICES} \par}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+\appendix
+
+%% Now want to number sections, tables etc. as A.1, A.2, etc.
+%% Though these wouldn't be with the appendix package, as
+%%  automatic, but do need them even if use \begin{appendices}:
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+%% Not including Appendix figures and tables in contents, and just
+%%  including the Appendix (chapter) names (not sections or
+%%  subsections):
+
+\lfoot{SPERA}
+
+%% Add an appendix. The appedices or any other Rnw files will be in the same scope as the main file,
+%% so they see the same R objects and those objects can be referenced directly.
+%% There is no difference between this and maindoc, they are both pasted in directly
+%% before the code is knitted.
+%\rfoot{Appendix A -- Species Summaries}
+%<<appendix-A, child='appendix-A/appendix-A.Rnw'>>=
+%@
+
+%\rfoot{Appendix B -- Modeling Inputs}
+%<<appendix-B, child='appendix-B/appendix-B.Rnw'>>=
+%@
+
+%% Used when you need to insert outside documents:
+%% \setcounter{page}{68}
+
+\end{document}
