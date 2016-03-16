@@ -384,18 +384,6 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 \section{FIGURES}
 \subsection{Survey Data}
 
-%%%%%%%%% Survey DEPTH FIGURE
-\newpage
-\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
-\begin{figure}[!htp]
-\begin{center}
-\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
-\end{center}
-\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
-\label{fig:allsurveysdepth}
-\end{figure}
-
-\newpage
 %%%%%%%%% SUrvey temp panel FIGURE
 
 \graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
@@ -409,19 +397,34 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 
 \newpage
 
-\subsection{BCMCA Data}
-%%%%%%%%% Survey DEPTH FIGURE
-%\newpage
-%\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
-%\begin{figure}[!htp]
-%\begin{center}
-%\includegraphics[width=6in,keepaspectratio=true]{FILENAME HERE.eps}
-%\end{center}
-%\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for based on BCMCA data.}
-%\label{fig:allsurveysdepth}
-%\end{figure}
+%%%%%%%%% survey temp versus avg net depth FIGURE
 
-%\newpage
+\newpage
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{SurvT_vs_Depth.eps}
+\end{center}
+\caption{Average net ocean temperature ($^\circ$C) with average net depth (m) for fishing events from groundfish trawl surveys from 2003 to 2011.}
+\label{fig:survtemppanel}
+\end{figure}
+
+\newpage
+
+\subsection{BCMCA Data}
+
+%%%%%%%%% BCMCA DEPTH FIGURE
+
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{Depth3km_gridded.eps}
+\end{center}
+\caption{Mean ocean depth (m) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys for all years.}
+\label{fig:allsurveysdepth}
+\end{figure}
+
+\newpage
 
 \subsection{ROMS}
 
@@ -499,6 +502,19 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 
 \newpage 
 
+%%%ROMS TEMP VERSUS BCMCA DEPTH SCATTERPLOT
+
+\graphicspath{{c:/GitHub/SPERA-Maps/Results/Figures/}}
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMST_vs_Depth.eps}
+\end{center}
+\caption{Relationship between ROMS ocean bottom temperature ($^\circ$C) and depth (m) for 2003 to 2011.}
+\label{fig:ROMST.depth}
+\end{figure}
+
+\newpage 
+
 %%%%%%%%% ROMS SALINITY PANEL FIGURES 
 \begin{figure}[!htp]
 \begin{center}
@@ -544,6 +560,31 @@ WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
 \caption{ROMS mean bottom salinity (PSU) in grid cells of 3 km x 3 km for fishing events from all groundfish trawl surveys 2006 to 2011.}
 \label{fig:ROMSsal06to11}
 \end{figure}
+
+%%%ROMS SALINITY VERSUS BCMCA DEPTH SCATTERPLOT
+
+\graphicspath{{c:/GitHub/SPERA-Maps/Results/Figures/}}
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSal_vs_Depth.eps}
+\end{center}
+\caption{Relationship between ROMS salinity (PSU) and depth (m) for 2003 to 2011.}
+\label{fig:ROMSSal.depth}
+\end{figure}
+
+%%%%%%%%% ROMS temp versus ROMS salinity FIGURE
+
+\newpage
+\graphicspath{ {c:/GitHub/SPERA-Maps/Results/Figures/} }
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=6in,keepaspectratio=true]{ROMSSal_vs_ROMST.eps}
+\end{center}
+\caption{The relationship between ROMS ocean temperature ($^\circ$C) and ROMS salinity (PSU) from 2003 to 2011.}
+\label{fig:ROMStempSal}
+\end{figure}
+
+\newpage
 
 \newpage
 \clearpage
