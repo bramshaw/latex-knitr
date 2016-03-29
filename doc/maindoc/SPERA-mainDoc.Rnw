@@ -267,8 +267,10 @@ $x_{hi}~ =$ & measurement for a hydrographic variable in set $i$ of stratum $h$;
 \end{tabular}
 \end{table}
 
+\clearpage
 \newpage
-%%%CDF Quantile table
+
+%%%CDF Temperature Quantile table
 <<make.cdfquant.table, results='asis', echo=FALSE>>=
 make.cdfquant.table(species,## The output of the load catches function above.
                   digits = 2, ## number of digits to show
@@ -279,46 +281,62 @@ make.cdfquant.table(species,## The output of the load catches function above.
                   placement = "tbp"       ## Placement of table
                                )
 @
+%%%CDF Depth Quantile table
+<<make.cdfquantdepth.table, results='asis', echo=FALSE>>=
+make.cdfquantdepth.table(spec, ## The output of the load catches %function above.
+                  digits = 2, ## number of digits to show
+                  xcaption = "Cumulative distribution function quantiles for survey depth-weighted catch.", ## Caption to use
+                  xlabel   = "default", ## Latex label to use
+                  font.size = 9,        ## Size of the font for %the table
+                  space.size = 10,      ## Size of the spaces for the table
+                  placement = "tbp"       ## Placement of table
+                               )
+@
  
 %% How you call an xtable from latex. Note there is no need for anything other than
 %% the R call to make.xtable. The label can be referenced elsewhere in the document.
 
-<<results='asis', echo=FALSE>>=
-make.xtable(seed=c(1,2,3,4), xcaption=paste0("Example using xtable with some pseudo-random seeded numbers. The function ",
-            "get.align makes the left column justified left and the rest justified right which ",
-            "is how most tables giving values are shown."), xlabel="tab:example-xtable")
-@
+\clearpage
+\newpage
+
+%<<results='asis', echo=FALSE>>=
+%make.xtable(seed=c(1,2,3,4), xcaption=paste0("Example using xtable with some pseudo-random seeded numbers. The function ",
+%            "get.align makes the left column justified left and the rest justified right which ",
+%            "is how most tables giving values are shown."), xlabel%="tab:example-xtable")
+%@
 
 
 %\textbf{Parameter} & \specialcell{\textbf{Number}\\\textbf{estimated}} & \specialcell{\textbf{Bounds}\\\textbf{[low,high]}} & \specialcell{\textbf{Prior (Mean, SD)}\\\textbf{(single value=fixed)}} \\
-\newpage
 
-\begin{table}[H]
-\centering
-\caption{\label{tab:annmeansSD}\fishnameARF\ mean lengths (mm), maturity, sex and total sample weight (kg) ${\pm}$ standard deviation (SD) from 1984 to 2015.}
-\begin{tabular}{lrrrrrrrr}%%lrr puts first column left-justified and the next eight columns right-justified
-\hline
-\textbf{Survey Year} & \textbf{$\overline{L}$} & \textbf{SD} & \textbf{$\overline{S}$} & \textbf{SD} & \textbf{$\overline{M}$} & \textbf{SD} & \textbf{$\overline{TotWt}_s$} & \textbf{SD}\\ 
-\hline
-1984           & a                               & See Table \ref{tab:annmeansSD} \\
-1987             & a                      & $\vartheta^2=1.538$; $\rho=0.015$ \\
-1989             & a                       & $\vartheta^2$ estimated; $\rho=0.059$ \\
-1991             & a                        & $\vartheta^2=0.962$; $\rho=0.038$ \\
-1993             & a                       & $\vartheta^2=2.500$; $\rho=0.100$ \\
-1998             & a            & $h$ = Beta($\alpha=12.7$, $\beta=5.0$) \\
-2000             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.05$) \\
-2002             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.25$) \\
-2003           & a        & $\ln(M)$ = Normal($\ln(0.3)$, $0.20$) \\
-2004          & a         & $\ln(q_k)$ = Normal($\ln(1.0)$, $1.0$) \\
-2005          & a         & $\ln(q_k)$ = Normal($\ln(0.5)$, $1.5$) \\
-2007          & a            & $\hat{a}$ = $4.99$ yrs; $\hat{\gamma}$ = $1.27$ yrs \\
-2009          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
-2011         & Aa              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
-2013          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
-2015         & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
-\hline
-\end{tabular}
-\end{table}
+%\clearpage
+%\newpage
+
+%\begin{table}[H]
+%\centering
+%\caption{\label{tab:annmeansSD}\fishnameARF\ mean lengths (mm), %maturity, sex and total sample weight (kg) ${\pm}$ standard %deviation (SD) from 1984 to 2015.}
+%\begin{tabular}{lrrrrrrrr}%%lrr puts first column left-justified %and the next eight columns right-justified
+%\hline
+%\textbf{Survey Year} & \textbf{$\overline{L}$} & \textbf{SD} & %\textbf{$\overline{S}$} & \textbf{SD} & \textbf{$\overline{M}$} & %\textbf{SD} & \textbf{$\overline{TotWt}_s$} & \textbf{SD}\\ 
+%\hline
+%1984           & a                               & See Table %\ref{tab:annmeansSD} \\
+%1987             & a                      & $\vartheta^2=1.538$; %$\rho=0.015$ \\
+%1989             & a                       & $\vartheta^2$ %estimated; $\rho=0.059$ \\
+%1991             & a                        & $\vartheta^2=0.962$; %$\rho=0.038$ \\
+%1993             & a                       & $\vartheta^2=2.500$; %$\rho=0.100$ \\
+%1998             & a            & $h$ = Beta($\alpha=12.7$, $\beta%=5.0$) \\
+%2000             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.05$) \\
+%2002             & a          & $\ln(M)$ = Normal($\ln(0.2)$, $0.25$) \\
+%2003           & a        & $\ln(M)$ = Normal($\ln(0.3)$, $0.20$) \\
+%2004          & a         & $\ln(q_k)$ = Normal($\ln(1.0)$, $1.0$) \\
+%2005          & a         & $\ln(q_k)$ = Normal($\ln(0.5)$, $1.5$) \\
+%2007          & a            & $\hat{a}$ = $4.99$ yrs; $\hat{\gamma}$ = $1.27$ yrs \\
+%2009          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%2011         & Aa              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%2013          & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%2015         & a              & $\hat{a}$ = $6.00$ yrs; $\hat{\gamma}$ = $1.00$ yrs \\
+%\hline
+%\end{tabular}
+%\end{table}
 
 
 %\begin{table}[H]
@@ -350,22 +368,22 @@ make.xtable(seed=c(1,2,3,4), xcaption=paste0("Example using xtable with some pse
 %\end{tabular}
 %\end{table}
 
-\begin{table}[H]
-\centering
-\caption{\label{tab:sensitivities-q}Sensitivity cases for $q_k$; posterior quantiles.}
-\begin{tabular}{lcccccc}
-\hline
-\textbf{Index}  & \multicolumn{3}{c}{\textbf{Sensitivity 10}} & \multicolumn{3}{c}{\textbf{Sensitivity 11}} \\
-\hline
- $\mathbf{q_k}$ & \textbf{2.5\%} & \textbf{50\%} & \textbf{97.5\%} & \textbf{2.5\%} & \textbf{50\%} & \textbf{97.5\%} \\
-\hline
-QCSSS  & 0.081 & 0.158 & 0.508 & 0.029 & 0.083 & 0.226 \\
-HSMAS  & 0.079 & 0.121 & 0.155 & 0.035 & 0.081 & 0.136 \\
-HSSS   & 0.070 & 0.118 & 0.200 & 0.027 & 0.067 & 0.136 \\
-WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
-\hline
-\end{tabular}
-\end{table}
+%\begin{table}[H]
+%\centering
+%\caption{\label{tab:sensitivities-q}Sensitivity cases for $q_k$; posterior quantiles.}
+%\begin{tabular}{lcccccc}
+%\hline
+%\textbf{Index}  & \multicolumn{3}{c}{\textbf{Sensitivity 10}} & %\multicolumn{3}{c}{\textbf{Sensitivity 11}} \\
+%\hline
+% $\mathbf{q_k}$ & \textbf{2.5\%} & \textbf{50\%} & \textbf{97.5\%} & \textbf{2.5\%} & \textbf{50\%} & \textbf{97.5\%} \\
+%\hline
+%QCSSS  & 0.081 & 0.158 & 0.508 & 0.029 & 0.083 & 0.226 \\
+%HSMAS  & 0.079 & 0.121 & 0.155 & 0.035 & 0.081 & 0.136 \\
+%HSSS   & 0.070 & 0.118 & 0.200 & 0.027 & 0.067 & 0.136 \\
+%WCVISS & 0.061 & 0.104 & 0.172 & 0.022 & 0.059 & 0.118 \\
+%\hline
+%\end{tabular}
+%\end{table}
 
 %% <<results='asis', echo=FALSE>>=
 %% # Note that the first column will not be set to have any decimal digits because it is the TAC/Catch projection

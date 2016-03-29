@@ -11,6 +11,6 @@ del *.toc
 del *.txt
 del *.out
 del *.synctex.gz
-del example.tex
-del example.pdf
+del SPERA-Main.tex
+del SPERA-Main.pdf
 rmdir /S /Q knitr-cache
